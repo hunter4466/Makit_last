@@ -44,7 +44,7 @@ app.all('/getData', (req, res) => {
     const query = 'SELECT * FROM categoriaitems';
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
-      res.send({ data: lines });
+      res.send({ data: lines[0].nombre });
       conn.release();
     });
   });
@@ -57,6 +57,6 @@ app.all('/links', (req, res) => {
   res.render('links');
 });
 /* ---------------------PPORTS-------------------*/
-app.listen('8080', () => {
+app.listen('5000', () => {
   console.log('MakitApp Iniciated');
 });
