@@ -1,0 +1,70 @@
+@import "./modules/box";
+@import "./modules/locations";
+@import "./modules/transitions";
+
+@font-face {
+  font-family: 'Cocogoose5';
+  src: url('./fonts/Cocogoose_Pro_Semilight-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Lato8';
+  src: url('./fonts/Lato-Regular.ttf');
+}
+
+body {
+  user-select: none;
+}
+
+.switch {
+  @include flexbox();
+}
+
+.switch_header {
+  position: relative;
+  left: -1vw;
+  top: -1.5vh;
+
+  @include flexbox(row);
+
+  width: 100vw;
+  height: 100px;
+  align-content: space-between;
+  background: linear-gradient(180deg, rgba(212, 212, 212, 1) 0%, rgba(255, 255, 255, 1) 100%);
+}
+
+.page_title {
+  margin-left: 2vw;
+  width: 100em;
+  font-family: Cocogoose5, serif;
+}
+
+.nav-bar {
+  @include flexbox(row);
+
+  width: fit-content;
+  list-style: none;
+  padding: 0;
+}
+
+.nav-bar li {
+  margin-right: 50px;
+  margin-left: 10px;
+  margin-top: auto;
+  margin-bottom: auto;
+  border-color: transparent;
+  transition: ease-in-out 0.2s;
+}
+
+.nav-bar li:hover {
+  @include buttonShadow();
+
+  transform: scale(1.3);
+}
+
+.nav-bar li a {
+  font-family: Lato8, serif;
+  font-size: 20px;
+  text-decoration: none;
+  color: black;
+}

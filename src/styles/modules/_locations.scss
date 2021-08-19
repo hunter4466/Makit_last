@@ -1,0 +1,15 @@
+@mixin sizeAndCenter($width, $height) {
+  position: absolute;
+  width: $width;
+  height: $height;
+  margin-left: -$width/2;
+  margin-top: -$height/2;
+  left: 50vw;
+  top: 50vh;
+}
+
+@mixin floatAndSize($width,$height,$float: left) {
+  float: $float;
+  width: $width;
+  height: $height;
+}

@@ -1,0 +1,118 @@
+@import "./modules/box";
+@import "./modules/locations";
+@import "./modules/transitions";
+
+@font-face {
+  font-family: 'Cocogoose1';
+  src: url('./fonts/Cocogoose_Pro_Italic-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose2';
+  src: url('./fonts/Cocogoose_Pro_Light_Italic-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose3';
+  src: url('./fonts/Cocogoose_Pro_Light-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose4';
+  src: url('./fonts/Cocogoose_Pro_Semilight_Italic-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose5';
+  src: url('./fonts/Cocogoose_Pro_Semilight-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose6';
+  src: url('./fonts/Cocogoose_Pro_Thin_Italic-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose7';
+  src: url('./fonts/Cocogoose_Pro_Thin-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose8';
+  src: url('./fonts/Cocogoose_Pro_UltraLight_Italic-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose9';
+  src: url('./fonts/Cocogoose_Pro_Ultralight-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Cocogoose10';
+  src: url('./fonts/Cocogoose_Pro-trial.ttf');
+}
+
+@font-face {
+  font-family: 'Lato1';
+  src: url('./fonts/Lato-Black.ttf');
+}
+
+@font-face {
+  font-family: 'Lato2';
+  src: url('./fonts/Lato-BlackItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Lato3';
+  src: url('./fonts/Lato-Bold.ttf');
+}
+
+@font-face {
+  font-family: 'Lato4';
+  src: url('./fonts/Lato-BoldItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Lato5';
+  src: url('./fonts/Lato-Italic.ttf');
+}
+
+@font-face {
+  font-family: 'Lato6';
+  src: url('./fonts/Lato-Light.ttf');
+}
+
+@font-face {
+  font-family: 'Lato7';
+  src: url('./fonts/Lato-LightItalic.ttf');
+}
+
+@font-face {
+  font-family: 'Lato8';
+  src: url('./fonts/Lato-Regular.ttf');
+}
+
+@font-face {
+  font-family: 'Lato9';
+  src: url('./fonts/Lato-Thin.ttf');
+}
+
+@font-face {
+  font-family: 'Lato10';
+  src: url('./fonts/Lato-ThinItalic.ttf');
+}
+
+.quote_container {
+  width: 90vw;
+  height: 70vh;
+
+  @include fade-enter;
+}
+
+.main_quote {
+  margin-top: 30vh;
+  margin-left: 10vw;
+  font-family: Lato4, serif;
+  font-size: 15px;
+  width: 30vw;
+}

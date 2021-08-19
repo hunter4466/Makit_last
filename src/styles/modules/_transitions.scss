@@ -1,0 +1,21 @@
+@mixin commonBtnTrans {
+  transition: ease-in-out 0.1s;
+
+  &:hover {
+    opacity: 0.5;
+  }
+
+  &:active {
+    opacity: 0.1;
+  }
+}
+
+@mixin fade-enter {
+  animation-name: enterAnim;
+  animation-duration: 1s;
+
+  @keyframes enterAnim {
+    0% { opacity: 0; }
+    100% { opacity: 1; }
+  }
+}

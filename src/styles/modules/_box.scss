@@ -1,0 +1,26 @@
+@mixin flexbox ($flexd: column) {
+  display: flex;
+  flex-direction: $flexd;
+}
+
+@mixin centerFromSize($width, $height) {
+  width: $width;
+  height: $height;
+  margin-left: $heg;
+}
+
+@mixin borderStyle() {
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: rgb(199, 199, 199);
+}
+
+@mixin buttonShadow() {
+  padding-left: 5px;
+  padding-right: 5px;
+  border-style: solid;
+  border-width: 0.5px;
+  border-color: rgb(232, 151, 0);
+  border-radius: 4px;
+  background-color: rgb(232, 151, 0);
+}
