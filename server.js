@@ -56,7 +56,7 @@ app.all('/carta', (req, res) => {
 app.all('/links', (req, res) => {
   res.render('links');
 });
-/* ---------------------PPORTS------------------*/
+/* ---------------------PPORTS-------------------*/
 app.listen('3000', () => {
   console.log('MakitApp Iniciated');
 });
