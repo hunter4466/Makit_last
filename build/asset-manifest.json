@@ -1,0 +1,24 @@
+{
+  "files": {
+    "main.css": "/hunter4466/Makit_laststatic/css/main.6c5035b1.chunk.css",
+    "main.js": "/hunter4466/Makit_laststatic/js/main.2707d3c7.chunk.js",
+    "main.js.map": "/hunter4466/Makit_laststatic/js/main.2707d3c7.chunk.js.map",
+    "runtime-main.js": "/hunter4466/Makit_laststatic/js/runtime-main.34628eb2.js",
+    "runtime-main.js.map": "/hunter4466/Makit_laststatic/js/runtime-main.34628eb2.js.map",
+    "static/js/2.279682d9.chunk.js": "/hunter4466/Makit_laststatic/js/2.279682d9.chunk.js",
+    "static/js/2.279682d9.chunk.js.map": "/hunter4466/Makit_laststatic/js/2.279682d9.chunk.js.map",
+    "static/js/3.2db552c9.chunk.js": "/hunter4466/Makit_laststatic/js/3.2db552c9.chunk.js",
+    "static/js/3.2db552c9.chunk.js.map": "/hunter4466/Makit_laststatic/js/3.2db552c9.chunk.js.map",
+    "index.html": "/hunter4466/Makit_lastindex.html",
+    "static/css/main.6c5035b1.chunk.css.map": "/hunter4466/Makit_laststatic/css/main.6c5035b1.chunk.css.map",
+    "static/js/2.279682d9.chunk.js.LICENSE.txt": "/hunter4466/Makit_laststatic/js/2.279682d9.chunk.js.LICENSE.txt",
+    "static/media/_quote.scss": "/hunter4466/Makit_laststatic/media/Lato-ThinItalic.c47d267d.ttf",
+    "static/media/_main.scss": "/hunter4466/Makit_laststatic/media/Lato-Regular.9919edff.ttf"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.34628eb2.js",
+    "static/js/2.279682d9.chunk.js",
+    "static/css/main.6c5035b1.chunk.css",
+    "static/js/main.2707d3c7.chunk.js"
+  ]
+}

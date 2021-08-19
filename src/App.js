@@ -4,7 +4,6 @@ import React, { Component } from 'react';
 class App extends Component {
   constructor(props) {
     super(props);
-    // No llames this.setState() aquí!
     this.state = {
       data: null,
     };
@@ -14,24 +13,24 @@ class App extends Component {
 
   componentDidMount() {
     this.callBackendAPI()
-      .then((res) => this.setState({ data: res.express }));
+      .then((res) => this.setState({ data: res.data }));
   }
 
   // fetching the GET route from the Express server which matches the GET route from server.js
       callBackendAPI = async () => {
-        const response = await fetch('/');
+        const response = await fetch('/getData');
         const body = await response.json();
-
         if (response.status !== 200) {
           throw Error(body.message);
         }
+        console.log(body);
         return body;
       };
 
       render() {
         const status = this.state;
         return (
-          <div className="App">
+          <div className="hello">
             <h1>hello world</h1>
             <h1>{status.data}</h1>
           </div>

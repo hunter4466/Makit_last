@@ -1,21 +1,12 @@
 {
-  "name": "makit-app",
-  "version": "1.0.0",
-  "description": "Whatsapp Orders App",
-  "main": "App.js",
-  "scripts": {
-    "start_server": "node server.js",
-    "start_page": "react-scripts start",
-    "build": "react-scripts build",
-    "dev": "nodemon app.js",
-    "test": "react-scripts test",
-    "eject": "react-scripts eject"
-  },
+  "name": "makitappbeta",
+  "version": "0.1.0",
+  "private": true,
+  "author": "Mario Chois",
+  "license": "ISC",
   "keywords": [
     "mktapp"
   ],
-  "author": "Mario Chois",
-  "license": "MIT",
   "dependencies": {
     "ejs": "^3.1.6",
     "express": "^4.17.1",
@@ -36,6 +27,32 @@
     "react-test-renderer": "^17.0.2",
     "web-vitals": "^1.0.1"
   },
+  "scripts": {
+    "start_server": "node server.js",
+    "dev": "nodemon server.js",
+    "start_app": "react-scripts start",
+    "build": "react-scripts build",
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
+  },
+  "eslintConfig": {
+    "extends": [
+      "react-app",
+      "react-app/jest"
+    ]
+  },
+  "browserslist": {
+    "production": [
+      ">0.2%",
+      "not dead",
+      "not op_mini all"
+    ],
+    "development": [
+      "last 1 chrome version",
+      "last 1 firefox version",
+      "last 1 safari version"
+    ]
+  },
   "devDependencies": {
     "@babel/core": "^7.15.0",
     "@babel/eslint-parser": "^7.15.0",
@@ -52,25 +69,5 @@
     "stylelint-config-standard": "^21.0.0",
     "stylelint-csstree-validator": "^1.9.0",
     "stylelint-scss": "^3.20.1"
-  },
-  "browserslist": {
-    "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
-    ],
-    "development": [
-      "last 1 chrome version",
-      "last 1 firefox version",
-      "last 1 safari version"
-    ]
-  },
-  "repository": {
-    "type": "git",
-    "url": "git+https://github.com/hunter4466/Makit_last.git"
-  },
-  "bugs": {
-    "url": "https://github.com/hunter4466/Makit_last/issues"
-  },
-  "homepage": "https://github.com/hunter4466/Makit_last#readme"
+  }
 }
