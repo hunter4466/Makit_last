@@ -1,9 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './styles/_calculator.scss';
-import './styles/_home.scss';
-import './styles/_quote.scss';
-import './styles/_main.scss';
+import './styles/_login.scss';
 import App from './App';
 import reportWebVitals from './reportWebVitals';
 
