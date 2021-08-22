@@ -46,7 +46,7 @@ export default class App extends Component {
               <div className="switch_header">
                 <ul className="nav-bar">
                   <li>
-                    <Link to="/">Home</Link>
+                    <Link to="/home">Home</Link>
                   </li>
                   <li>
                     <Link to="/store">Store</Link>
@@ -57,14 +57,14 @@ export default class App extends Component {
                 </ul>
               </div>
               <Switch>
-                <Route path="/shop">
-                  <ShoppingCart />
+                <Route path="/home">
+                  <HomePage />
                 </Route>
                 <Route path="/store">
                   <Store />
                 </Route>
-                <Route path="/">
-                  <HomePage />
+                <Route path="/shop">
+                  <ShoppingCart />
                 </Route>
               </Switch>
             </div>

@@ -1,67 +1,50 @@
-import React, { Component } from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
 
-export default class Store extends Component {
-  constructor(props) {
-    super(props);
-    this.state = {
-      cat_items: null,
-      cat_prod: null,
-      items: null,
-      prod: null,
-      prod_cat_items: null,
-    };
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.callBackendAPI = this.callBackendAPI.bind(this);
+const callBackendAPI = async () => {
+  const response = await fetch('/getProducts');
+  const body = await response.json();
+  if (response.status !== 200) {
+    throw Error(body.message);
   }
+  return body;
+};
 
-  componentDidMount() {
-    this.callBackendAPI()
-      .then((res) => this.setState(res.data));
+const requestprodAPI = async (id) => {
+  const response = await fetch(`/getProdWithId/${id}`);
+  const body = await response.json();
+  if (response.status !== 200) {
+    throw Error(body.message);
   }
+  return body.data;
+};
 
-    callBackendAPI = async () => {
-      const response = await fetch('/getProducts');
-      const body = await response.json();
-      if (response.status !== 200) {
-        throw Error(body.message);
-      }
-      return body;
-    };
+const Store = () => {
+  const [CatProd, SetCatItems] = useState([]);
+  const [ProdList, SetProdList] = useState([]);
 
-    render() {
-      const status = this.state;
-      return (
-        <Router>
-          <li>
-            <Link to="/shop">Home</Link>
-          </li>
-          <li>
-            {status.cat_items}
-          </li>
-          <li>
-            {status.cat_prod}
-          </li>
-          <li>
-            {status.items}
-          </li>
-          <li>
-            {status.prod}
-          </li>
-          <li>
-            {status.prod_cat_items}
-          </li>
-          <Switch>
-            <Route path="/shop">
-              ShoppingCart
-            </Route>
-          </Switch>
-        </Router>
-      );
-    }
-}
+  useEffect(() => {
+    let mounted = true;
+    callBackendAPI()
+      .then((res) => {
+        if (mounted) {
+          SetCatItems(res.data.cat_prod);
+        }
+        return function cleanup() {
+          mounted = false;
+        };
+      });
+  });
+
+  return (
+    <div id="Products">
+      <ul>
+        {CatProd.map((array) => (<button type="button" onClick={async () => { requestprodAPI(array.idcategorias).then((res) => SetProdList(res)); }} key={array.nombre}>{array.nombre}</button>))}
+      </ul>
+      <div id="prod_list">
+        {ProdList.map((array) => (<button type="button" key={array.nombre}>{array.nombre}</button>))}
+      </div>
+    </div>
+  );
+};
+
+export default Store;

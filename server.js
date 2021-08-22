@@ -70,6 +70,20 @@ app.all('/getProducts', (req, res) => {
     });
   });
 });
+
+app.all('/getProdWithId/:id', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const query = `SELECT * FROM productos WHERE idcategoria = ${req.params.id}`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send({
+        data: lines,
+      });
+      conn.release();
+    });
+  });
+});
+
 /* ------------------ANEXOS---------------------*/
 app.all('/carta', (req, res) => {
   res.render('cartamakit');
