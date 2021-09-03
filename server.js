@@ -1,3 +1,4 @@
+const { response } = require('express');
 const express = require('express');
 const session = require('express-session');
 const mysql = require('mysql');
@@ -23,7 +24,7 @@ app.use(express.static('build'));
 //     multipleStatements: 'true'})
 
 const pool = mysql.createPool({
-  connectionLimit: 1000,
+  connectionLimit: 10,
   host: '72.167.67.76',
   user: 'makit_nueva',
   password: 'jf7l2p93li',
@@ -37,35 +38,12 @@ app.all('/', (req, res) => {
 });
 
 /* ---------------------------API-------------------------*/
-app.all('/getData', (req, res) => {
+app.all('/getcategories', (req, res) => {
   pool.getConnection((err, conn) => {
-    const query = 'SELECT * FROM categoriaitems';
+    const query = 'SELECT * FROM categoriaproductos';
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
-      res.send({ data: lines[0].nombre });
-      conn.release();
-    });
-  });
-});
-
-app.all('/getProducts', (req, res) => {
-  pool.getConnection((err, conn) => {
-    const query1 = 'SELECT * FROM categoriaitems';
-    const query2 = 'SELECT * FROM categoriaproductos';
-    const query3 = 'SELECT * FROM items';
-    const query4 = 'SELECT * FROM productos';
-    const query5 = 'SELECT * FROM productos_categoriaitems';
-    conn.query(`${query1};${query2};${query3};${query4};${query5};`, (error, lines) => {
-      if (error) { throw error; }
-      res.send({
-        data: {
-          cat_items: lines[0],
-          cat_prod: lines[1],
-          items: lines[2],
-          prod: lines[3],
-          prod_cat_items: lines[4],
-        },
-      });
+      res.send(lines);
       conn.release();
     });
   });
@@ -76,21 +54,38 @@ app.all('/getProdWithId/:id', (req, res) => {
     const query = `SELECT * FROM productos WHERE idcategoria = ${req.params.id}`;
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
-      res.send({
-        data: lines,
-      });
+      res.send(lines);
       conn.release();
     });
   });
 });
 
 app.all('/getItemWithId/:id', (req, res) => {
+  let result = [];
+  const responseObj = [];
   pool.getConnection((err, conn) => {
-    const query = `SELECT * FROM categoriaitems WHERE idcategoriaitems = ${req.params.id}`;
+    const query = `SELECT * FROM productos_categoriaitems WHERE idproductos = ${req.params.id} AND cantidad > 0`;
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
-      res.send({
-        data: lines,
+      result = lines;
+      let index = 0;
+      result.forEach((element) => {
+        const innerquery = `SELECT * FROM categoriaitems WHERE idcategoriaitems = ${element.idcategoriaitems}`;
+        const innerquery2 = `SELECT * FROM items WHERE idcategoriaitems = ${element.idcategoriaitems}`;
+        conn.query(`${innerquery};${innerquery2}`, [0, 1], (innererror, innerlines) => {
+          if (innererror) { throw innererror; }
+          const innerresponse = innerlines[0];
+          const innerresponse2 = innerlines[1];
+          responseObj.push({
+            name: innerresponse[0].nombre,
+            indexes: lines[index],
+            content: innerresponse2,
+          });
+          index += 1;
+          if (index === lines.length) {
+            res.send(responseObj);
+          }
+        });
       });
       conn.release();
     });
@@ -105,6 +100,8 @@ app.all('/links', (req, res) => {
   res.render('links');
 });
 /* ---------------------PPORTS-------------------*/
-app.listen('8080', () => {
-  console.log('MakitApp Iniciated');
+const PORT = '8080';
+app.listen(PORT, () => {
+  // eslint-disable-next-line no-console
+  console.log('MakitApp API Listening in port', PORT, '...');
 });
