@@ -1,39 +1,32 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Storepicker from './storepicker';
-import { setProductHeader } from '../../../redux/store/store';
-import { buildProduct } from '../../../redux/cart/cart';
+import {
+  resetStore,
+  setProductHeader,
+  switchSecondaryState,
+  switchStorePicker,
+} from '../../../redux/store/store';
 
 const Storesecondary = () => {
-  const [secStoreState, setSecStoreState] = useState(false);
   const secondaryData = useSelector((state) => state.storeSecondaryReducer);
-  const productBuild = useSelector(((state) => state.productBuildReducer));
   const dispatch = useDispatch();
   const handleClick = (data) => {
-    if (secStoreState) {
-      setSecStoreState(false);
-    } else {
-      dispatch(setProductHeader(data));
-      setSecStoreState(true);
-    }
+    dispatch(switchSecondaryState(false));
+    dispatch(setProductHeader(data));
+    dispatch(switchStorePicker(true));
   };
-  const handleAddProductToCart = () => {
-    dispatch(buildProduct(productBuild));
+  const HandleBackBtn = () => {
+    dispatch(resetStore());
   };
   return (
-    <div>
-      <div>StoreSecondary</div>
-      {secondaryData.map((data) => (
-        <button key={data.nombre} type="button" onClick={() => { handleClick({ id: data.idproductos, header: data.nombre }); }}>{data.nombre}</button>
-      ))}
-      {secStoreState
-        ? (
-          <div>
-            <Storepicker />
-            <button type="button" onClick={() => handleClick()}>Close Picker</button>
-            <button type="button" onClick={() => handleAddProductToCart()}>Accept All</button>
-          </div>
-        ) : false}
+    <div className="store_secondary_container">
+      <div>
+        <div>StoreSecondary</div>
+        {secondaryData.map((data) => (
+          <button key={data.nombre} type="button" onClick={() => { handleClick({ id: data.idproductos, header: data.nombre, price: data.precio }); }}>{data.nombre}</button>
+        ))}
+        <button type="button" onClick={() => { HandleBackBtn(); }}>Volver</button>
+      </div>
     </div>
   );
 };

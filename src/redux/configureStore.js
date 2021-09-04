@@ -3,7 +3,7 @@ import {
 } from 'redux';
 import logger from 'redux-logger';
 import {
-  switchReducer,
+  storeSwitchReducer,
   storemainReducer,
   storeSecondaryReducer,
   storePickerReducer,
@@ -19,7 +19,7 @@ import {
 import { cartReducer } from './cart/cart';
 
 const reducer = combineReducers({
-  switchReducer,
+  storeSwitchReducer,
   storemainReducer,
   storeSecondaryReducer,
   storePickerReducer,

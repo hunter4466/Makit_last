@@ -5,6 +5,7 @@ import App from './App';
 import store from './redux/configureStore';
 import './styles/_login.scss';
 import './styles/_store.scss';
+import './styles/_main.scss';
 
 ReactDOM.render(
   <React.StrictMode>

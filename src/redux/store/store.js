@@ -1,4 +1,4 @@
-// ---------------- paths --------------------
+// ---------------- paths (Data) --------------------
 const TRIGGER_STORE = 'REDUX/STORE/STORE/GET_CATEGORIES';
 const TRIGGER_PRODUCTS = 'REDUX/STORE/STORE/TRIGGER_PRODUCTS';
 const GET_CATEGORIES = 'REDUX/STORE/STORE/UPD_STORE';
@@ -11,11 +11,17 @@ const BUILD_ITEM = 'REDUX/STORE/BUILD_ITEM';
 const SET_ITEM_HEADER = 'REDUX/STORE/SET_ITEM_HEADER';
 const SET_PRODUCT_HEADER = 'REDUX/STORE/SET_PRODUCT_HEADER';
 const SET_FINAL_PRODUCT_HEADER = 'REDUX/STORE/SET_FINAL_PRODUCT_HEADER';
+// ---------------- paths (Switch) --------------------
+const SWITCH_PARENT_STATE = 'REDUX/STORE/SWITCH_PARENT_STATE';
+const SWITCH_SECONDARY_STORE = 'REDUX/STORE/SWITCH_SECONDARY_STORE';
+const SWITCH_STORE_PICKER = 'REDUX/STORE/SWITCH_STORE_PICKER';
 const SWITCH_ITEM_PICKER = 'REDUX/STORE/SWITCH_ITEM_PICKER';
+const RESET_STORE = 'REDUX/STORE/RESET_STORE';
+
 // ---------------- Initial state ------------
 let firstLoadState = true;
 const initialState = [];
-// ---------------- Actions ------------------
+// ---------------- Actions (Data) ------------------
 const triggerStore = (payload) => ({
   type: TRIGGER_STORE,
   payload,
@@ -64,20 +70,64 @@ const setFinalProductHeader = (payload) => ({
   type: SET_FINAL_PRODUCT_HEADER,
   payload,
 });
-const swithItemPicker = (payload) => ({
+// ---------------- Actions (Switch) ------------------
+const switchParentState = (payload) => ({
+  type: SWITCH_PARENT_STATE,
+  payload,
+});
+const switchSecondaryState = (payload) => ({
+  type: SWITCH_SECONDARY_STORE,
+  payload,
+});
+const switchStorePicker = (payload) => ({
+  type: SWITCH_STORE_PICKER,
+  payload,
+});
+const switchItemPicker = (payload) => ({
   type: SWITCH_ITEM_PICKER,
   payload,
 });
-// ----------------- Switch Reducers -----------
-const switchReducer = (state = false, action) => {
+const resetStore = () => ({
+  type: RESET_STORE,
+});
+
+// ----------------- SWITCH --------------
+// ----------------- REDUCERS ------------
+const storeSwitchDefaultState = {
+  parentState: true,
+  secondaryStoreState: false,
+  storePickerState: false,
+  itemPickerState: false,
+};
+const storeSwitchReducer = (state = storeSwitchDefaultState, action) => {
+  const storeState = {
+    parentState: state.parentState,
+    secondaryStoreState: state.secondaryStoreState,
+    storePickerState: state.storePickerState,
+    itemPickerState: state.itemPickerState,
+  };
   switch (action.type) {
+    case SWITCH_PARENT_STATE:
+      storeState.parentState = action.payload;
+      return storeState;
+    case SWITCH_SECONDARY_STORE:
+      storeState.secondaryStoreState = action.payload;
+      return storeState;
+    case SWITCH_STORE_PICKER:
+      storeState.storePickerState = action.payload;
+      return storeState;
     case SWITCH_ITEM_PICKER:
-      return action.payload;
+      storeState.itemPickerState = action.payload;
+      return storeState;
+    case RESET_STORE:
+      return storeSwitchDefaultState;
     default:
       return state;
   }
 };
-// ---------------- Reducers ------------------
+
+// ----------------- STORE MAIN --------------
+// ----------------- REDUCERS ------------
 const storemainReducer = (state = initialState, action) => {
   const actionPayload = action.payload;
   switch (action.type) {
@@ -107,6 +157,7 @@ const storePickerReducer = (state = initialState, action) => {
     case SET_PRODUCT_HEADER:
       return {
         header: actionPayload.header,
+        price: actionPayload.price,
         content: [],
       };
     case GET_PICKER:
@@ -114,6 +165,7 @@ const storePickerReducer = (state = initialState, action) => {
       return {
         header: activeState.header,
         content: activeState.content,
+        price: activeState.price,
       };
     default:
       return state;
@@ -151,10 +203,11 @@ const productBuildReducer = (state = initialState, action) => {
   const load = action.payload;
   switch (action.type) {
     case SET_FINAL_PRODUCT_HEADER:
-      return { header: action.payload, content: [] };
+      return { header: action.payload.header, price: action.payload.price, content: [] };
     case APPEND_ITEM_TO_PRODUCT:
       return {
         header: state.header,
+        price: state.price,
         content: [...state.content, load],
       };
     default:
@@ -206,22 +259,30 @@ const addItemToProductMiddleware = (store) => (next) => (action) => {
 };
 const addFinalProductHeaderMiddleware = (store) => (next) => (action) => {
   if (action.type === SET_PRODUCT_HEADER) {
-    store.dispatch(setFinalProductHeader(action.payload.header));
+    store.dispatch(setFinalProductHeader({
+      header: action.payload.header,
+      price: action.payload.price,
+    }));
   }
   next(action);
 };
 // ---------------- Exports --------------
 export {
   // ------ Reducers -------
-  switchReducer,
+  storeSwitchReducer,
   storemainReducer,
   storeSecondaryReducer,
   storePickerReducer,
   itemPickerReducer,
   itemBuildReducer,
   productBuildReducer,
-  // ------ Actions --------
-  swithItemPicker,
+  // ------ Actions (Switch) --------
+  switchParentState,
+  switchSecondaryState,
+  switchStorePicker,
+  switchItemPicker,
+  resetStore,
+  // ------ Actions (Data) --------
   triggerStore,
   triggerProducts,
   triggerPicker,

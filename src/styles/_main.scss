@@ -1,0 +1,10 @@
+@import './modules/box';
+
+.nav-bar {
+  @include flexbox(row);
+}
+
+.nav-bar-li {
+    list-style: none;
+    margin-right: 1vw;
+}

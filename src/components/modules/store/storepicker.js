@@ -1,58 +1,53 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import Itempicker from './storepicker_modules.js/itempicker';
-import { opentItemPicker, setItemHeader, swithItemPicker } from '../../../redux/store/store';
+import { Link } from 'react-router-dom';
+import {
+  opentItemPicker,
+  resetStore,
+  setItemHeader,
+  switchItemPicker,
+  switchSecondaryState,
+  switchStorePicker,
+} from '../../../redux/store/store';
+import { buildProduct } from '../../../redux/cart/cart';
 
 const Storepicker = () => {
   const dispatch = useDispatch();
-  const [secStoreState, setSecStoreState] = useState(false);
   const pickerData = useSelector((state) => state.storePickerReducer);
-  const secStoreState2 = useSelector((state) => state.switchReducer);
-  const handleClick = () => {
-    if (secStoreState) {
-      setSecStoreState(false);
-    } else {
-      setSecStoreState(true);
-    }
-  };
+  const productBuild = useSelector(((state) => state.productBuildReducer));
   const handleClick2 = (info, header) => {
-    if (secStoreState2) {
-      dispatch(swithItemPicker(false));
-    } else {
-      dispatch(setItemHeader(header));
-      dispatch(opentItemPicker(info));
-      dispatch(swithItemPicker(true));
-    }
+    dispatch(switchStorePicker(false));
+    dispatch(setItemHeader(header));
+    dispatch(opentItemPicker(info));
+    dispatch(switchItemPicker(true));
+  };
+  const handleAddProductToCart = () => {
+    dispatch(resetStore());
+    dispatch(buildProduct(productBuild));
+  };
+  const handleBackBtn = () => {
+    dispatch(switchStorePicker(false));
+    dispatch(switchSecondaryState(true));
   };
   return (
-    <div>
-      <div>StorePicker</div>
-      {pickerData.content.map((data) => (
-        <div key={data.name}>
-          <button
-            type="button"
-            onClick={() => {
-              handleClick2(data, data.name);
-            }}
-          >
-            {data.name}
-          </button>
-        </div>
-      ))}
-      {secStoreState2
-        ? (
-          <div>
-            <Itempicker />
-            <button type="button" onClick={() => handleClick2()}>Close Item Picker</button>
+    <div className="store_picker_container">
+      <div>
+        <div>StorePicker</div>
+        {pickerData.content.map((data) => (
+          <div key={data.name}>
+            <button
+              type="button"
+              onClick={() => {
+                handleClick2(data, data.name);
+              }}
+            >
+              {data.name}
+            </button>
           </div>
-        ) : false}
-      {secStoreState
-        ? (
-          <div>
-            <Storepicker />
-            <button type="button" onClick={() => handleClick()}>Close Picker</button>
-          </div>
-        ) : false}
+        ))}
+        <Link to="/shop" type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</Link>
+        <button type="button" onClick={() => handleBackBtn()}>Volver</button>
+      </div>
     </div>
   );
 };
