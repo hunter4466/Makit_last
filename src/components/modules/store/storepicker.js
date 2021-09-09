@@ -1,6 +1,6 @@
 import React from 'react';
+import { Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
-import { Link } from 'react-router-dom';
 import {
   opentItemPicker,
   resetStore,
@@ -21,9 +21,21 @@ const Storepicker = () => {
     dispatch(opentItemPicker(info));
     dispatch(switchItemPicker(true));
   };
+  const checkAll = (array) => {
+    for (let i = 0; i < array.length; i += 1) {
+      if (!array[i].completed) {
+        return false;
+      }
+    }
+    return true;
+  };
   const handleAddProductToCart = () => {
-    dispatch(resetStore());
-    dispatch(buildProduct(productBuild));
+    if (checkAll(pickerData.content)) {
+      dispatch(resetStore());
+      dispatch(buildProduct(productBuild));
+      return (<Redirect push to="/store" />);
+    }
+    return false;
   };
   const handleBackBtn = () => {
     dispatch(switchStorePicker(false));
@@ -36,6 +48,7 @@ const Storepicker = () => {
         {pickerData.content.map((data) => (
           <div key={data.name}>
             <button
+              className={data.completed ? 'completed_btn' : 'uncompleted_btn'}
               type="button"
               onClick={() => {
                 handleClick2(data, data.name);
@@ -45,7 +58,7 @@ const Storepicker = () => {
             </button>
           </div>
         ))}
-        <Link to="/shop" type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</Link>
+        <button type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>
         <button type="button" onClick={() => handleBackBtn()}>Volver</button>
       </div>
     </div>

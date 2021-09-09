@@ -11,6 +11,7 @@ const BUILD_ITEM = 'REDUX/STORE/BUILD_ITEM';
 const SET_ITEM_HEADER = 'REDUX/STORE/SET_ITEM_HEADER';
 const SET_PRODUCT_HEADER = 'REDUX/STORE/SET_PRODUCT_HEADER';
 const SET_FINAL_PRODUCT_HEADER = 'REDUX/STORE/SET_FINAL_PRODUCT_HEADER';
+const CHANGE_COMPLETED_STATE = 'REDUX/STORE/CHANGE_COMPLETED_STATE';
 // ---------------- paths (Switch) --------------------
 const SWITCH_PARENT_STATE = 'REDUX/STORE/SWITCH_PARENT_STATE';
 const SWITCH_SECONDARY_STORE = 'REDUX/STORE/SWITCH_SECONDARY_STORE';
@@ -52,6 +53,10 @@ const opentItemPicker = (payload) => ({
 });
 const setProductHeader = (payload) => ({
   type: SET_PRODUCT_HEADER,
+  payload,
+});
+const changeCompletedState = (payload) => ({
+  type: CHANGE_COMPLETED_STATE,
   payload,
 });
 const setItemHeader = (payload) => ({
@@ -153,6 +158,14 @@ const storeSecondaryReducer = (state = initialState, action) => {
 const storePickerReducer = (state = initialState, action) => {
   const actionPayload = action.payload;
   const activeState = state;
+  const activeContent = state.content;
+  const replaceCompletedState = (name) => {
+    for (let i = 0; i < activeContent.length; i += 1) {
+      if (activeContent[i].name === name) {
+        activeContent[i].completed = true;
+      }
+    }
+  };
   switch (action.type) {
     case SET_PRODUCT_HEADER:
       return {
@@ -165,6 +178,13 @@ const storePickerReducer = (state = initialState, action) => {
       return {
         header: activeState.header,
         content: activeState.content,
+        price: activeState.price,
+      };
+    case CHANGE_COMPLETED_STATE:
+      replaceCompletedState(action.payload);
+      return {
+        header: activeState.header,
+        content: activeContent,
         price: activeState.price,
       };
     default:
@@ -201,15 +221,43 @@ const itemBuildReducer = (state = initialState, action) => {
 };
 const productBuildReducer = (state = initialState, action) => {
   const load = action.payload;
+  const tester = () => {
+    const arrayToTest = [...state.content];
+    if (arrayToTest.length > 0) {
+      for (let i = 0; i < arrayToTest.length; i += 1) {
+        if (arrayToTest[i].header === load.header) {
+          return true;
+        }
+      }
+    }
+    return false;
+  };
+  const replaceData = (toRep) => {
+    const arrayToRep = [...state.content];
+    for (let i = 0; i < arrayToRep.length; i += 1) {
+      if (arrayToRep[i].header === toRep.header) {
+        arrayToRep[i].content = toRep.content;
+      }
+    }
+    return arrayToRep;
+  };
   switch (action.type) {
     case SET_FINAL_PRODUCT_HEADER:
       return { header: action.payload.header, price: action.payload.price, content: [] };
     case APPEND_ITEM_TO_PRODUCT:
+      if (tester()) {
+        return {
+          header: state.header,
+          price: state.price,
+          content: replaceData(load),
+        };
+      }
       return {
         header: state.header,
         price: state.price,
         content: [...state.content, load],
       };
+
     default:
       return state;
   }
@@ -293,6 +341,7 @@ export {
   setProductHeader,
   buildItem,
   setItemHeader,
+  changeCompletedState,
   // ---- Middlewares -----
   getCategoriesFromAPIMiddleware,
   getProductsFromAPIMiddleware,

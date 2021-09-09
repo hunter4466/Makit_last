@@ -79,6 +79,7 @@ app.all('/getItemWithId/:id', (req, res) => {
             name: innerresponse[0].nombre,
             indexes: lines[index],
             content: innerresponse2,
+            completed: false,
           });
           index += 1;
           if (index === lines.length) {

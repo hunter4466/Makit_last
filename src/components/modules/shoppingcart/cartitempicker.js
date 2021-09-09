@@ -9,7 +9,7 @@ import {
   switchStorePicker,
 } from '../../../redux/store/store';
 
-const Itempicker = () => {
+const Cartitempicker = () => {
   const dispatch = useDispatch();
   const itemData = useSelector((state) => state.itemPickerReducer);
   const productBuild = useSelector((state) => state.productBuildReducer);
@@ -89,7 +89,6 @@ const Itempicker = () => {
       const objectForSend = {
         header: itemData.header,
         content: nameTitleArray,
-        completed: true,
       };
       dispatch(buildItem(objectForSend));
       dispatch(switchItemPicker(false));
@@ -134,4 +133,4 @@ const Itempicker = () => {
   );
 };
 
-export default Itempicker;
+export default Cartitempicker;

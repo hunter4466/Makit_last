@@ -9,12 +9,14 @@ import {
 import HomePage from './components/homepage';
 import ShoppingCart from './components/shoppingcart';
 import Store from './components/store';
+import { resetCartSwitch } from './redux/cart/cart';
 import { resetStore } from './redux/store/store';
 
 const App = () => {
   const dispatch = useDispatch();
   const handleStoreCloseClick = () => {
     dispatch(resetStore());
+    dispatch(resetCartSwitch());
   };
   return (
     <Router>

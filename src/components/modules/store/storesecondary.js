@@ -12,8 +12,8 @@ const Storesecondary = () => {
   const dispatch = useDispatch();
   const handleClick = (data) => {
     dispatch(switchSecondaryState(false));
-    dispatch(setProductHeader(data));
     dispatch(switchStorePicker(true));
+    dispatch(setProductHeader(data));
   };
   const HandleBackBtn = () => {
     dispatch(resetStore());
