@@ -1,0 +1,39 @@
+/*html {
+    scroll-behavior: smooth;
+  }*/
+/*--------------------------------------ESTILO DE BODY GENERAL-------------------------------------------------*/
+body{
+    background-color: white;
+    color: #000000;
+    font-family: 'Poppins', sans-serif;
+    font-weight:bolder;
+    background-size: 40%;
+    overflow-x: hidden;
+}
+.titleprincipal{
+    background-color:rgba(0, 0, 0, 0.4);
+  color: rgb(0, 0, 0)
+}
+.main-logo{
+    background-size: 100%;
+    background-repeat: no-repeat;
+    margin-left: 19vw;
+    margin-top: 19vw;
+    width: 60vw;
+    height: 45vw;
+}
+.start_order{
+    box-shadow:1px 1px 1px 1px rgba(0, 0, 0, 0.4);
+    margin-left: 17vw;
+    margin-top: 19vw;
+    height: 32vw;
+    width: 62vw;
+    font-size: 8vw;
+}
+.main_background{
+    width: 100vw;
+    height: 100vw;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    z-index: 1;
+}

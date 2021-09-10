@@ -10,6 +10,7 @@ const MODIFY_PRODUCT_FROM_CART = 'REDUX/CART/MODIFY_PRODUCT_FROM_CART';
 const FILL_CART_ITEM_PICKER = 'REDUX/CART/FILL_CART_ITEM_PICKER';
 const RESET_CART_SWITCH = 'REDUX/CART/RESET_CART_SWITCH';
 const CART_STORE_REPLACEMENT_ACTION = 'REDUX/CART/CART_STORE_REPLACEMENT_ACTION';
+const MODIFY_DELIVERY_STATE_AND_VALUE = 'REDUX/CART/MODIFY_DELIVERY_STATE_AND_VALUE';
 // ---------------- Actions ------------------
 const buildProduct = (payload) => ({
   type: APPEND_PRODUCT_TO_CART,
@@ -44,6 +45,10 @@ const resetCartSwitch = () => ({
 });
 const cartStoreReplacementAction = (payload) => ({
   type: CART_STORE_REPLACEMENT_ACTION,
+  payload,
+});
+const modifiDeliveryStateAndValue = (payload) => ({
+  type: MODIFY_DELIVERY_STATE_AND_VALUE,
   payload,
 });
 // ----------------- Switch Reducers -----------
@@ -83,27 +88,41 @@ const cartReducerInitialState = {
   code: `order_${idGenerator()}`,
   orderaddress: null,
   orderaddressref: null,
+  orderproductsamount: null,
   orderamounttotal: null,
   orderdeliverystate: false,
+  orderdeliveryamount: 0,
   paymentmethod: null,
   orderregisterdate: null,
-  orderdeliverdate: null,
+  orderdeliverdate: false,
   orderregistertime: null,
   orderdelivertime: null,
 };
 const cartReducer = (state = cartReducerInitialState, action) => {
   const productsArray = state.ordercontent;
   const stateObject = state;
+  const sumProducts = (array) => {
+    const priceArray = [];
+    for (let i = 0; i < array.length; i += 1) {
+      priceArray.push(parseFloat(array[i].price).toFixed(2));
+    }
+    return priceArray.reduce((a, b) => a + b);
+  };
   switch (action.type) {
     case APPEND_PRODUCT_TO_CART:
       productsArray.push(action.payload);
       stateObject.ordercontent = productsArray;
+      stateObject.orderproductsamount = sumProducts(productsArray);
+      stateObject.orderamounttotal = sumProducts(productsArray)
+      + stateObject.orderdeliveryamount;
       return stateObject;
     case MODIFY_PRODUCT_FROM_CART:
-      console.log(productsArray);
-      console.log(action.payload.code);
       stateObject.ordercontent = productsArray.filter((e) => e.code !== action.payload.code);
       stateObject.ordercontent.push(action.payload);
+      return stateObject;
+    case MODIFY_DELIVERY_STATE_AND_VALUE:
+      stateObject.orderdeliverdate = true;
+      stateObject.orderdeliveryamount = parseFloat(action.payload).toFixed(2);
       return stateObject;
     default:
       return state;
@@ -163,5 +182,6 @@ export {
   fillCartItemPicker,
   resetCartSwitch,
   cartStoreReplacementAction,
+  modifiDeliveryStateAndValue,
   // ---- Middlewares -----
 };

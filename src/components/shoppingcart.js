@@ -42,6 +42,10 @@ const ShoppingCart = () => {
                 <button type="button" onClick={() => { handleEditClick(eh); }}>Editar</button>
               </div>
             ))}
+            <h1>Monto de compra</h1>
+            <h2>{`S/ ${data.orderproductsamount}`}</h2>
+            <h1>Delivery</h1>
+            <h2>{`S/ ${data.orderproductsamount}`}</h2>
           </div>
 
         ) : ''

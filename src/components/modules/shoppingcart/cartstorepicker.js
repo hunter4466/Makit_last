@@ -26,7 +26,6 @@ const Cartstorepicker = () => {
   };
   const handleAddProductToCart = () => {
     if (checkAll(pickerData.content)) {
-      console.log(pickerData);
       dispatch(modifyProductFromCart(pickerData));
       dispatch(switchCartStorePicker(false));
       dispatch(switchShoppingCart(true));

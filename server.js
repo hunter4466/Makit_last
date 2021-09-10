@@ -35,7 +35,6 @@ const pool = mysql.createPool({
 app.all('/', (req, res) => {
   res.sendFile('index.html');
 });
-
 /* ---------------------------API-------------------------*/
 app.all('/getcategories', (req, res) => {
   pool.getConnection((err, conn) => {
@@ -94,7 +93,7 @@ app.all('/getItemWithId/:id', (req, res) => {
 
 /* ------------------ANEXOS---------------------*/
 app.all('/carta', (req, res) => {
-  res.render('cartamakit');
+  res.render('carta');
 });
 app.all('/links', (req, res) => {
   res.render('links');
