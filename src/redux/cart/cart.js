@@ -1,4 +1,4 @@
-import idGenerator from "../../components/utilities/idgen";
+import idGenerator from '../../components/utilities/idgen';
 
 // ---------------- paths --------------------
 const APPEND_PRODUCT_TO_CART = 'REDUX/CART/APPEND_PRODUCT_TO_CART';
@@ -75,12 +75,12 @@ const cartSwitchReducer = (state = cartSwitchInitialState, action) => {
       return state;
   }
 };
-const cartReducer = (state = {
+const cartReducerInitialState = {
   ordercontent: [],
   customerid: null,
   customername: null,
   customerphone: null,
-  orderid: `order_${idGenerator()}`,
+  code: `order_${idGenerator()}`,
   orderaddress: null,
   orderaddressref: null,
   orderamounttotal: null,
@@ -90,32 +90,21 @@ const cartReducer = (state = {
   orderdeliverdate: null,
   orderregistertime: null,
   orderdelivertime: null,
-}, action) => {
+};
+const cartReducer = (state = cartReducerInitialState, action) => {
   const productsArray = state.ordercontent;
-  /* const replaceProduct = () => {
-    const allProducts = [...state];
-  }; */
+  const stateObject = state;
   switch (action.type) {
     case APPEND_PRODUCT_TO_CART:
       productsArray.push(action.payload);
-      return {
-        ordercontent: productsArray,
-        customerid: state.customerid,
-        customername: state.customername,
-        customerphone: state.customerphone,
-        orderid: state.orderid,
-        orderaddress: state.orderaddress,
-        orderaddressref: state.orderaddressref,
-        orderamounttotal: state.orderamounttotal,
-        orderdeliverystate: state.orderdeliverystate,
-        paymentmethod: state.paymentmethod,
-        orderregisterdate: state.orderregisterdate,
-        orderdeliverdate: state.orderdeliverdate,
-        orderregistertime: state.orderregistertime,
-        orderdelivertime: state.orderdelivertime,
-      };
+      stateObject.ordercontent = productsArray;
+      return stateObject;
     case MODIFY_PRODUCT_FROM_CART:
-      return state;
+      console.log(productsArray);
+      console.log(action.payload.code);
+      stateObject.ordercontent = productsArray.filter((e) => e.code !== action.payload.code);
+      stateObject.ordercontent.push(action.payload);
+      return stateObject;
     default:
       return state;
   }

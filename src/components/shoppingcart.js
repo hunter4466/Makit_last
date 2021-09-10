@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { switchShoppingCart, switchCartStorePicker, fillCartStorePicker } from '../redux/cart/cart';
 import Cartitempicker from './modules/shoppingcart/cartitempicker';
 import Cartstorepicker from './modules/shoppingcart/cartstorepicker';
+import { miniIdGenerator } from './utilities/idgen';
 
 const ShoppingCart = () => {
   const dispatch = useDispatch();
@@ -19,8 +20,8 @@ const ShoppingCart = () => {
       switchState.shoppingcart
         ? (
           <div>
-            {data.map((eh) => (
-              <div key={eh.header}>
+            {data.ordercontent.map((eh) => (
+              <div key={`${eh.header}${miniIdGenerator()}`}>
                 <h1>{eh.header}</h1>
                 {eh.content.map((ec) => (
                   <div key={ec.header}>
