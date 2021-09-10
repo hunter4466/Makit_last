@@ -78,18 +78,23 @@ const Itempicker = () => {
   const handleAddClick = (key) => {
     if (completedFields) {
       const nameTitle = document.querySelectorAll('#sub_item_name');
+      const nameDescr = document.querySelectorAll('#sub_item_description');
       const quantityInput = document.querySelectorAll(`.${key}`);
       const nameTitleArray = [];
       for (let i = 0; i < nameTitle.length; i += 1) {
         nameTitleArray.push({
           name: nameTitle[i].innerHTML,
           quantity: parseInt(quantityInput[i].value, 10),
+          description: nameDescr[i].innerHTML,
+          codename: quantityInput[i].id,
         });
       }
       const objectForSend = {
         header: itemData.header,
         content: nameTitleArray,
         completed: true,
+        maxvalue: parseInt(itemData.content.indexes.cantidad, 10),
+        factor: parseInt(itemData.content.indexes.factor, 10),
       };
       dispatch(buildItem(objectForSend));
       dispatch(switchItemPicker(false));
@@ -115,7 +120,7 @@ const Itempicker = () => {
           <h1 id="sub_item_name">
             {innerdata.nombre}
           </h1>
-          <p>{innerdata.descripcion}</p>
+          <p id="sub_item_description">{innerdata.descripcion}</p>
           <div>
             <input className={itemData.content.name.split(' ').join('_')} id={innerdata.codename} type="number" defaultValue={0} />
             <div>

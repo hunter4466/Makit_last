@@ -1,6 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { switchShoppingCart, switchCartStorePicker, fillCartStorePicker } from '../redux/cart/cart';
+import Cartitempicker from './modules/shoppingcart/cartitempicker';
 import Cartstorepicker from './modules/shoppingcart/cartstorepicker';
 
 const ShoppingCart = () => {
@@ -45,6 +46,7 @@ const ShoppingCart = () => {
         ) : ''
         }
       {switchState.cartstorepicker ? <Cartstorepicker /> : ''}
+      {switchState.cartitempicker ? <Cartitempicker /> : ''}
     </div>
   );
 };

@@ -1,3 +1,5 @@
+import idGenerator from "../../components/utilities/idgen";
+
 // ---------------- paths --------------------
 const APPEND_PRODUCT_TO_CART = 'REDUX/CART/APPEND_PRODUCT_TO_CART';
 const SWITCH_SHOPPING_CART = 'REDUX/CART/SWITCH_SHOPPING_CART';
@@ -7,6 +9,7 @@ const FILL_CART_STORE_PICKER = 'REDUX/CART/FILL_CART_STORE_PICKER';
 const MODIFY_PRODUCT_FROM_CART = 'REDUX/CART/MODIFY_PRODUCT_FROM_CART';
 const FILL_CART_ITEM_PICKER = 'REDUX/CART/FILL_CART_ITEM_PICKER';
 const RESET_CART_SWITCH = 'REDUX/CART/RESET_CART_SWITCH';
+const CART_STORE_REPLACEMENT_ACTION = 'REDUX/CART/CART_STORE_REPLACEMENT_ACTION';
 // ---------------- Actions ------------------
 const buildProduct = (payload) => ({
   type: APPEND_PRODUCT_TO_CART,
@@ -39,6 +42,10 @@ const modifyProductFromCart = (payload) => ({
 const resetCartSwitch = () => ({
   type: RESET_CART_SWITCH,
 });
+const cartStoreReplacementAction = (payload) => ({
+  type: CART_STORE_REPLACEMENT_ACTION,
+  payload,
+});
 // ----------------- Switch Reducers -----------
 // ---------------- Reducers ------------------
 const cartSwitchInitialState = {
@@ -68,12 +75,45 @@ const cartSwitchReducer = (state = cartSwitchInitialState, action) => {
       return state;
   }
 };
-const cartReducer = (state = [], action) => {
-  const productsArray = state;
+const cartReducer = (state = {
+  ordercontent: [],
+  customerid: null,
+  customername: null,
+  customerphone: null,
+  orderid: `order_${idGenerator()}`,
+  orderaddress: null,
+  orderaddressref: null,
+  orderamounttotal: null,
+  orderdeliverystate: false,
+  paymentmethod: null,
+  orderregisterdate: null,
+  orderdeliverdate: null,
+  orderregistertime: null,
+  orderdelivertime: null,
+}, action) => {
+  const productsArray = state.ordercontent;
+  /* const replaceProduct = () => {
+    const allProducts = [...state];
+  }; */
   switch (action.type) {
     case APPEND_PRODUCT_TO_CART:
       productsArray.push(action.payload);
-      return productsArray;
+      return {
+        ordercontent: productsArray,
+        customerid: state.customerid,
+        customername: state.customername,
+        customerphone: state.customerphone,
+        orderid: state.orderid,
+        orderaddress: state.orderaddress,
+        orderaddressref: state.orderaddressref,
+        orderamounttotal: state.orderamounttotal,
+        orderdeliverystate: state.orderdeliverystate,
+        paymentmethod: state.paymentmethod,
+        orderregisterdate: state.orderregisterdate,
+        orderdeliverdate: state.orderdeliverdate,
+        orderregistertime: state.orderregistertime,
+        orderdelivertime: state.orderdelivertime,
+      };
     case MODIFY_PRODUCT_FROM_CART:
       return state;
     default:
@@ -81,9 +121,28 @@ const cartReducer = (state = [], action) => {
   }
 };
 const cartStorePickerReducer = (state = [], action) => {
+  const replaceFunction = () => {
+    const stateArray = [...state.content];
+    const newArray = [];
+    for (let i = 0; i < stateArray.length; i += 1) {
+      if (stateArray[i].header === action.payload.header) {
+        newArray.push(action.payload);
+      } else {
+        newArray.push(stateArray[i]);
+      }
+    }
+    return newArray;
+  };
   switch (action.type) {
     case FILL_CART_STORE_PICKER:
       return action.payload;
+    case CART_STORE_REPLACEMENT_ACTION:
+      return {
+        header: state.header,
+        price: state.price,
+        code: state.code,
+        content: replaceFunction(),
+      };
     default:
       return state;
   }
@@ -114,5 +173,6 @@ export {
   modifyProductFromCart,
   fillCartItemPicker,
   resetCartSwitch,
+  cartStoreReplacementAction,
   // ---- Middlewares -----
 };

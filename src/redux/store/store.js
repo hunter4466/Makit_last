@@ -1,3 +1,5 @@
+import idGenerator from '../../components/utilities/idgen';
+
 // ---------------- paths (Data) --------------------
 const TRIGGER_STORE = 'REDUX/STORE/STORE/GET_CATEGORIES';
 const TRIGGER_PRODUCTS = 'REDUX/STORE/STORE/TRIGGER_PRODUCTS';
@@ -243,18 +245,25 @@ const productBuildReducer = (state = initialState, action) => {
   };
   switch (action.type) {
     case SET_FINAL_PRODUCT_HEADER:
-      return { header: action.payload.header, price: action.payload.price, content: [] };
+      return {
+        header: action.payload.header,
+        price: action.payload.price,
+        code: idGenerator(),
+        content: [],
+      };
     case APPEND_ITEM_TO_PRODUCT:
       if (tester()) {
         return {
           header: state.header,
           price: state.price,
+          code: state.code,
           content: replaceData(load),
         };
       }
       return {
         header: state.header,
         price: state.price,
+        code: state.code,
         content: [...state.content, load],
       };
 

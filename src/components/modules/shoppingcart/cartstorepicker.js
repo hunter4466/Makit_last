@@ -26,7 +26,7 @@ const Cartstorepicker = () => {
   };
   const handleAddProductToCart = () => {
     if (checkAll(pickerData.content)) {
-      dispatch(modifyProductFromCart());
+      dispatch(modifyProductFromCart(pickerData));
     }
     return false;
   };
@@ -51,7 +51,7 @@ const Cartstorepicker = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => handleAddProductToCart()}>Termianr modificaciones</button>
+        <button type="button" onClick={() => handleAddProductToCart()}>Terminar modificaciones</button>
         <button type="button" onClick={() => handleBackBtn()}>Volver</button>
       </div>
     </div>
