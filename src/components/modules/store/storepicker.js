@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 import {
@@ -58,7 +59,7 @@ const Storepicker = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>
+        {checkAll(pickerData.content) ? (<Link to="/shop" onClick={() => handleAddProductToCart()}>Agregar al carrito</Link>) : (<button type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>) }
         <button type="button" onClick={() => handleBackBtn()}>Volver</button>
       </div>
     </div>

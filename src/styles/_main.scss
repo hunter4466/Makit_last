@@ -1,5 +1,9 @@
 @import './modules/box';
 
+body {
+  user-select: none;
+}
+
 .nav-bar {
   @include flexbox(row);
 }

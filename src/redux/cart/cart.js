@@ -83,16 +83,16 @@ const cartSwitchReducer = (state = cartSwitchInitialState, action) => {
 const cartReducerInitialState = {
   ordercontent: [],
   customerid: null,
-  customername: null,
+  customername: 'Nombre Prueba',
   customerphone: null,
   code: `order_${idGenerator()}`,
-  orderaddress: null,
-  orderaddressref: null,
+  orderaddress: 'Calle Prueba 615',
+  orderaddressref: 'Referencia de prueba',
   orderproductsamount: null,
   orderamounttotal: null,
   orderdeliverystate: false,
   orderdeliveryamount: 0,
-  paymentmethod: null,
+  paymentmethod: 'PagoLink VISA',
   orderregisterdate: null,
   orderdeliverdate: false,
   orderregistertime: null,
@@ -102,11 +102,11 @@ const cartReducer = (state = cartReducerInitialState, action) => {
   const productsArray = state.ordercontent;
   const stateObject = state;
   const sumProducts = (array) => {
-    const priceArray = [];
+    let priceValue = 0;
     for (let i = 0; i < array.length; i += 1) {
-      priceArray.push(parseFloat(array[i].price).toFixed(2));
+      priceValue = parseFloat(priceValue) + parseFloat(array[i].price);
     }
-    return priceArray.reduce((a, b) => a + b);
+    return priceValue;
   };
   switch (action.type) {
     case APPEND_PRODUCT_TO_CART:
@@ -114,7 +114,7 @@ const cartReducer = (state = cartReducerInitialState, action) => {
       stateObject.ordercontent = productsArray;
       stateObject.orderproductsamount = sumProducts(productsArray);
       stateObject.orderamounttotal = sumProducts(productsArray)
-      + stateObject.orderdeliveryamount;
+      + parseFloat(stateObject.orderdeliveryamount);
       return stateObject;
     case MODIFY_PRODUCT_FROM_CART:
       stateObject.ordercontent = productsArray.filter((e) => e.code !== action.payload.code);
@@ -122,7 +122,9 @@ const cartReducer = (state = cartReducerInitialState, action) => {
       return stateObject;
     case MODIFY_DELIVERY_STATE_AND_VALUE:
       stateObject.orderdeliverdate = true;
-      stateObject.orderdeliveryamount = parseFloat(action.payload).toFixed(2);
+      stateObject.orderdeliveryamount = parseFloat(action.payload);
+      stateObject.orderamounttotal = sumProducts(productsArray)
+      + parseFloat(stateObject.orderdeliveryamount);
       return stateObject;
     default:
       return state;

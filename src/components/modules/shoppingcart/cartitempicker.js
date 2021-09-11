@@ -67,7 +67,6 @@ const Cartitempicker = () => {
       dispatch(cartStoreReplacementAction(objectForSend));
       dispatch(switchCartItemPicker(false));
       dispatch(switchCartStorePicker(true));
-      /*  dispatch(changeCompletedState(itemData.header)); */
     } else {
       setUncAlert(true);
     }
