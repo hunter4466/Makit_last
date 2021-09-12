@@ -13,7 +13,17 @@ import PlacesAutocomplete, {
 
 const HomePage = () => {
   const [address, setAddress] = useState('');
-  const handleSelect = async (value) => {};
+  const [coordinates, setCoordinates] = useState({
+    lat: null,
+    lng: null,
+  })
+  const handleSelect = async (value) => {
+    const results = await geocodeByAddress(value);
+    const latLng = await getLatLng(results[0]);
+    setAddress(value);
+    setCoordinates(latLng);
+    console.log(results);
+  };
 
   return (
     <div>
@@ -27,6 +37,15 @@ const HomePage = () => {
           getInputProps, suggestions, getSuggestionItemProps, loading,
         }) => (
           <div>
+            <p>
+              Latitude:
+              {coordinates.lat}
+            </p>
+            <p>
+              Longitude:
+              {coordinates.lng}
+            </p>
+            <iframe title="My Adress" id="em_map" src={`https://www.google.com/maps/d/u/0/embed?mid=1Cxx3AkFIooxPPzxtmM-rmo0w_egA51RS&ll=${coordinates.lat}%2C${coordinates.lng}&z=14`} width="300" height="250" />
             <input {...getInputProps({ placeholder: 'Type address' })} />
             <div>
               {loading ? <div>...loading</div> : null}
