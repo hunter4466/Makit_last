@@ -18,6 +18,7 @@ import {
   getItemsFromAPIMiddleware,
   addItemToProductMiddleware,
   addFinalProductHeaderMiddleware,
+  loadingScreensMiddleware,
 } from './store/store';
 // ----------- CART IMPORTS -----------
 import {
@@ -27,6 +28,7 @@ import {
   cartStorePickerReducer,
   cartItemPickerReducer,
   // --- Middlewares --
+  saveCartInfoMiddleware,
 } from './cart/cart';
 
 const reducer = combineReducers({
@@ -52,8 +54,9 @@ const composedEnhancer = compose(
   applyMiddleware(getItemsFromAPIMiddleware),
   applyMiddleware(addItemToProductMiddleware),
   applyMiddleware(addFinalProductHeaderMiddleware),
+  applyMiddleware(loadingScreensMiddleware),
   // ------------ Cart Middlewares -----
-
+  applyMiddleware(saveCartInfoMiddleware),
   // ------------- Logger --------------
   applyMiddleware(logger),
 );

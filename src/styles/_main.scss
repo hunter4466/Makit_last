@@ -2,20 +2,24 @@
 
 body {
   user-select: none;
+  margin: 0;
 }
-
-.nav-bar {
+.page_holder {
+  width: 100vw;
+  @include flexbox(column)
+}
+.navigator_bar {
+  width: 100vw;
+  height: 25vw;
   @include flexbox(row);
+  background-color: rgb(255, 255, 255);
 }
-
-.nav-bar-li {
-    list-style: none;
-    margin-right: 1vw;
+.nav_item {
+  width: 33vw;
+  height: 25vw;
+  text-align: center;
 }
-
-.completed_btn {
-  background-color: green;
-}
-.uncompleted_btn {
-  background-color: rgb(255, 204, 0);
+.nav_item img {
+  margin-top: 3vw;
+  width: 60%;
 }

@@ -4,13 +4,16 @@ import {
   BrowserRouter as Router,
   Switch,
   Route,
-  Link,
+  NavLink,
 } from 'react-router-dom';
 import HomePage from './components/homepage';
 import ShoppingCart from './components/shoppingcart';
 import Store from './components/store';
 import { resetCartSwitch } from './redux/cart/cart';
 import { resetStore } from './redux/store/store';
+import home from './images/icons/home.svg';
+import store from './images/icons/store.svg';
+import shoppingcart from './images/icons/shopping_cart.svg';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -20,22 +23,11 @@ const App = () => {
   };
   return (
     <Router>
-      <div className="hello">
-        <h1>Makit App</h1>
-      </div>
-      <div className="switch">
-        <div className="switch_header">
-          <ul className="nav-bar">
-            <li className="nav-bar-li">
-              <Link onClick={() => { handleStoreCloseClick(); }} to="/home">Home</Link>
-            </li>
-            <li className="nav-bar-li">
-              <Link onClick={() => { handleStoreCloseClick(); }} to="/store">Store</Link>
-            </li>
-            <li className="nav-bar-li">
-              <Link onClick={() => { handleStoreCloseClick(); }} to="/shop">Shoping Cart</Link>
-            </li>
-          </ul>
+      <div className="page_holder">
+        <div className="navigator_bar">
+          <NavLink className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/home"><img alt="home" src={home} /></NavLink>
+          <NavLink className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/store"><img alt="home" src={store} /></NavLink>
+          <NavLink className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/shop"><img alt="home" src={shoppingcart} /></NavLink>
         </div>
         <Switch>
           <Route path="/home">

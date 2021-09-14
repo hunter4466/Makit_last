@@ -20,6 +20,9 @@ const SWITCH_SECONDARY_STORE = 'REDUX/STORE/SWITCH_SECONDARY_STORE';
 const SWITCH_STORE_PICKER = 'REDUX/STORE/SWITCH_STORE_PICKER';
 const SWITCH_ITEM_PICKER = 'REDUX/STORE/SWITCH_ITEM_PICKER';
 const RESET_STORE = 'REDUX/STORE/RESET_STORE';
+const SWITCH_LOADING_1 = 'REDUX/STORE/SWITCH_LOADING_1';
+const SWITCH_LOADING_2 = 'REDUX/STORE/SWITCH_LOADING_2';
+const SWITCH_LOADING_3 = 'REDUX/STORE/SWITCH_LOADING_3';
 
 // ---------------- Initial state ------------
 let firstLoadState = true;
@@ -97,6 +100,18 @@ const switchItemPicker = (payload) => ({
 const resetStore = () => ({
   type: RESET_STORE,
 });
+const loadingSwitch1 = (payload) => ({
+  type: SWITCH_LOADING_1,
+  payload,
+});
+const loadingSwitch2 = (payload) => ({
+  type: SWITCH_LOADING_2,
+  payload,
+});
+const loadingSwitch3 = (payload) => ({
+  type: SWITCH_LOADING_3,
+  payload,
+});
 
 // ----------------- SWITCH --------------
 // ----------------- REDUCERS ------------
@@ -105,6 +120,9 @@ const storeSwitchDefaultState = {
   secondaryStoreState: false,
   storePickerState: false,
   itemPickerState: false,
+  loading1State: false,
+  loading2State: false,
+  loading3State: false,
 };
 const storeSwitchReducer = (state = storeSwitchDefaultState, action) => {
   const storeState = {
@@ -112,6 +130,9 @@ const storeSwitchReducer = (state = storeSwitchDefaultState, action) => {
     secondaryStoreState: state.secondaryStoreState,
     storePickerState: state.storePickerState,
     itemPickerState: state.itemPickerState,
+    loading1State: state.loading1State,
+    loading2State: state.loading2State,
+    loading3State: state.loading3State,
   };
   switch (action.type) {
     case SWITCH_PARENT_STATE:
@@ -125,6 +146,15 @@ const storeSwitchReducer = (state = storeSwitchDefaultState, action) => {
       return storeState;
     case SWITCH_ITEM_PICKER:
       storeState.itemPickerState = action.payload;
+      return storeState;
+    case SWITCH_LOADING_1:
+      storeState.loading1State = action.payload;
+      return storeState;
+    case SWITCH_LOADING_2:
+      storeState.loading2State = action.payload;
+      return storeState;
+    case SWITCH_LOADING_3:
+      storeState.loading3State = action.payload;
       return storeState;
     case RESET_STORE:
       return storeSwitchDefaultState;
@@ -275,6 +305,7 @@ const productBuildReducer = (state = initialState, action) => {
 const getCategoriesFromAPIMiddleware = (store) => (next) => (action) => {
   if (action.type === TRIGGER_STORE) {
     if (firstLoadState) {
+      store.dispatch(loadingSwitch1(true));
       firstLoadState = false;
       fetch('/getCategories', {
         headers: {
@@ -288,6 +319,7 @@ const getCategoriesFromAPIMiddleware = (store) => (next) => (action) => {
 };
 const getProductsFromAPIMiddleware = (store) => (next) => (action) => {
   if (action.type === TRIGGER_PRODUCTS) {
+    store.dispatch(loadingSwitch2(true));
     fetch(`/getProdWithId/${action.payload}`, {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -299,6 +331,7 @@ const getProductsFromAPIMiddleware = (store) => (next) => (action) => {
 };
 const getItemsFromAPIMiddleware = (store) => (next) => (action) => {
   if (action.type === SET_PRODUCT_HEADER) {
+    store.dispatch(loadingSwitch3(true));
     fetch(`/getItemWithId/${action.payload.id}`, {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
@@ -323,6 +356,16 @@ const addFinalProductHeaderMiddleware = (store) => (next) => (action) => {
   }
   next(action);
 };
+const loadingScreensMiddleware = (store) => (next) => (action) => {
+  if (action.type === GET_CATEGORIES) {
+    store.dispatch(loadingSwitch1(false));
+  } else if (action.type === GET_PRODUCTS) {
+    store.dispatch(loadingSwitch2(false));
+  } else if (action.type === GET_PICKER) {
+    store.dispatch(loadingSwitch3(false));
+  }
+  next(action);
+};
 // ---------------- Exports --------------
 export {
   // ------ Reducers -------
@@ -339,6 +382,9 @@ export {
   switchStorePicker,
   switchItemPicker,
   resetStore,
+  loadingSwitch1,
+  loadingSwitch2,
+  loadingSwitch3,
   // ------ Actions (Data) --------
   triggerStore,
   triggerProducts,
@@ -357,4 +403,5 @@ export {
   getItemsFromAPIMiddleware,
   addItemToProductMiddleware,
   addFinalProductHeaderMiddleware,
+  loadingScreensMiddleware,
 };

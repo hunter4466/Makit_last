@@ -33,28 +33,32 @@ const Storemain = () => {
     dispatch(switchSecondaryState(true));
   };
   return (
-    <div className="store_main_container">
-      {parentState
-        ? (
-          <div>
-            {productData.map((data) => (
-              <button type="button" key={data.nombre} onClick={() => handleClick(data.idcategorias)}>{data.nombre}</button>
-            ))}
-          </div>
-        ) : false}
+    <div>
+      {switchState.loading1State ? <div><h1>Loading</h1></div> : (
+        <div className="store_main_container">
+          {parentState
+            ? (
+              <div>
+                {productData.map((data) => (
+                  <button type="button" key={data.nombre} onClick={() => handleClick(data.idcategorias)}>{data.nombre}</button>
+                ))}
+              </div>
+            ) : false}
 
-      {secondaryStoreState
-        ? (
-          <Storesecondary />
-        ) : false}
-      {storePickerState
-        ? (
-          <Storepicker />
-        ) : false}
-      {itemPickerState
-        ? (
-          <Itempicker />
-        ) : false}
+          {secondaryStoreState
+            ? (
+              <Storesecondary />
+            ) : false}
+          {storePickerState
+            ? (
+              <Storepicker />
+            ) : false}
+          {itemPickerState
+            ? (
+              <Itempicker />
+            ) : false}
+        </div>
+      )}
     </div>
   );
 };

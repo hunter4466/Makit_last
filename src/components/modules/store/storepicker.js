@@ -16,6 +16,7 @@ const Storepicker = () => {
   const dispatch = useDispatch();
   const pickerData = useSelector((state) => state.storePickerReducer);
   const productBuild = useSelector(((state) => state.productBuildReducer));
+  const switchState = useSelector((state) => state.storeSwitchReducer);
   const handleClick2 = (info, header) => {
     dispatch(switchStorePicker(false));
     dispatch(setItemHeader(header));
@@ -43,25 +44,29 @@ const Storepicker = () => {
     dispatch(switchSecondaryState(true));
   };
   return (
-    <div className="store_picker_container">
-      <div>
-        <div>StorePicker</div>
-        {pickerData.content.map((data) => (
-          <div key={data.name}>
-            <button
-              className={data.completed ? 'completed_btn' : 'uncompleted_btn'}
-              type="button"
-              onClick={() => {
-                handleClick2(data, data.name);
-              }}
-            >
-              {data.name}
-            </button>
+    <div>
+      {switchState.loading3State ? <div><h1>Loading...</h1></div> : (
+        <div className="store_picker_container">
+          <div>
+            <div>StorePicker</div>
+            {pickerData.content.map((data) => (
+              <div key={data.name}>
+                <button
+                  className={data.completed ? 'completed_btn' : 'uncompleted_btn'}
+                  type="button"
+                  onClick={() => {
+                    handleClick2(data, data.name);
+                  }}
+                >
+                  {data.name}
+                </button>
+              </div>
+            ))}
+            {checkAll(pickerData.content) ? (<Link to="/shop" onClick={() => handleAddProductToCart()}>Agregar al carrito</Link>) : (<button type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>) }
+            <button type="button" onClick={() => handleBackBtn()}>Volver</button>
           </div>
-        ))}
-        {checkAll(pickerData.content) ? (<Link to="/shop" onClick={() => handleAddProductToCart()}>Agregar al carrito</Link>) : (<button type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>) }
-        <button type="button" onClick={() => handleBackBtn()}>Volver</button>
-      </div>
+        </div>
+      )}
     </div>
   );
 };

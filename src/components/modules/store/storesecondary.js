@@ -9,6 +9,7 @@ import {
 
 const Storesecondary = () => {
   const secondaryData = useSelector((state) => state.storeSecondaryReducer);
+  const switchState = useSelector((state) => state.storeSwitchReducer);
   const dispatch = useDispatch();
   const handleClick = (data) => {
     dispatch(switchSecondaryState(false));
@@ -19,14 +20,18 @@ const Storesecondary = () => {
     dispatch(resetStore());
   };
   return (
-    <div className="store_secondary_container">
-      <div>
-        <div>StoreSecondary</div>
-        {secondaryData.map((data) => (
-          <button key={data.nombre} type="button" onClick={() => { handleClick({ id: data.idproductos, header: data.nombre, price: data.precio }); }}>{data.nombre}</button>
-        ))}
-        <button type="button" onClick={() => { HandleBackBtn(); }}>Volver</button>
-      </div>
+    <div>
+      {switchState.loading2State ? <div><h1>Loading...</h1></div> : (
+        <div className="store_secondary_container">
+          <div>
+            <div>StoreSecondary</div>
+            {secondaryData.map((data) => (
+              <button key={data.nombre} type="button" onClick={() => { handleClick({ id: data.idproductos, header: data.nombre, price: data.precio }); }}>{data.nombre}</button>
+            ))}
+            <button type="button" onClick={() => { HandleBackBtn(); }}>Volver</button>
+          </div>
+        </div>
+      )}
     </div>
   );
 };
