@@ -1,16 +1,138 @@
+@import './modules/buttons.scss';
+@import './modules/box.scss';
+@import './fonts';
+
 .store_main_container {
     position: absolute;
     width: 100vw;
-    height: 100vw;
-    background-color: rgb(128, 128, 197);
+    height: 150vw;
+    padding-top: 5vw;
+    background-color: rgb(250, 250, 250);
 }
-.store_secondary_container {
-    position: float;
-    width: 100vw;
-    height: 100vw;
-    background-color: rgb(197, 161, 128);
-    top: -100vw;
+.back-btn {
+    @include back_btn(30vw, 10vw);
+}
+.add-btn-active {
+    text-align: center;
+    @include addBtn(50vw, 10vw, 20vw, 10vw);
+    @include customFont(Lato1, 3.5vw);
+    background-color: rgba(0,0,0,0);
+    text-decoration: none;
+    color: black;
+}
+.add-btn-active p {
+    margin-top: 2.5vw;
+}
+.add-btn-unactive {
+    @include addBtn(50vw, 10vw, 20vw, 10vw);
+    @include customFont(Lato1, 3.5vw);
+    background-color: rgba(0,0,0,0.1)
+}
+// --------------- categorie btns ----------------
+.main_menu_btn {
+    float: left;
+    @include customFont(Lato1, 5vw);
+    @include menu_btn(90vw, 20vw, 5vw, 2vw);
+    overflow: hidden;
+}
+.button_bg {
+    position: relative;
+    width: 100%;
+    height: 30vw;
+    margin-top: -30vw;
+    background: no-repeat right url(../images/icons/serifmakit.svg);
+    opacity: 0.15;
+    filter: invert(8%) sepia(96%) saturate(5586%) hue-rotate(13deg) brightness(100%) contrast(103%);
+}
+// ----------------- product buttons ------------------
+.secondary_menu_btn {
+    @include flexbox(row);
+    float: left;
+    @include customFont(Lato1, 5vw);
+    @include menu_btn(90vw, 40vw, 5vw, 2vw);
+    overflow: hidden;
+    padding: 0vw;
+}
+.sec_men_preview_img_cont {
+    width: 45vw;
+    height: 40vw;
+    overflow: hidden;
+}
+.sec_men_preview_img {
+    width: 100%;
+}
+.secondary_btn_info_container {
+    @include flexbox(column);
+    width: 45vw;
+    height: 40vw;
+    margin-left: 2vw;
+    margin-right: 2vw;
+    margin-top: 3vw;
+}
+.secondary_btn_info_name {
+    text-align: center;
+    width:20vw;
+    height: 10vw;
+    @include customFont(Lato1, 4vw);
+    padding-right: 1vw;
+    padding-left: 1vw;
+}
+.secondary_btn_info_description {
+    text-align: center;
+    width: 46vw;
+    height: 10vw;
+    @include customFont(Lato1, 3vw);
+    padding-right: 1vw;
+    padding-left: 1vw;
+}
+.secondary_btn_info_price {
+    text-align: center;
+    width: 20vw;
+    height: 10vw;
+    @include customFont(Lato1, 5vw);
+    padding-right: 1vw;
+    padding-left: 1vw;
+}
+.product_data {
+    width: fit-content;
+}
+// ----------------- store picker ------------------
+.store_picker_main_container {
+
 }
 .store_picker_container {
-    
+    @include flexbox(column);
+    width: 90vw;
+    margin-left: 5vw;
+    margin-top: 5vw;
+    height: fit-content;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 3vw;
+    border-color: rgb(225, 225, 225);
+    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
 }
+.store_picker_title{
+    @include customFont(Lato1, 6vw);
+    width: 70vw;
+    margin-left: 10vw;
+    margin-top: 5vw;
+    margin-bottom: 5vw;
+}
+.completed_btn {
+    @include storePickerBtn(50vw, 15vw, 20vw, 2vw);
+    @include customFont(Lato3, 5vw);
+    background-color:rgb(126, 223, 126);
+}
+.uncompleted_btn {
+    @include storePickerBtn(50vw, 15vw, 20vw, 2vw);
+    @include customFont(Lato1, 5vw);
+}
+.alert_bg {
+    position: fixed;
+    @include alertBg();
+}
+.alert_btn {
+    @include alertBtn();
+}
+// ----------------- Item picker ------------------

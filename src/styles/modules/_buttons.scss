@@ -1,0 +1,85 @@
+@import '../fonts';
+
+@mixin menu_btn($width, $height, $marginh, $marginv) {
+ width: $width;
+ height: $height;
+ margin-left: $marginh;
+ margin-right: $marginh;
+ margin-top: $marginv;
+ margin-bottom: $marginv;
+ border-style: solid;
+ border-width: 1px;
+ border-radius: 2vw;
+ background-color: white;
+ border-color: rgb(225, 225, 225);
+ box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+}
+@mixin back_btn($width, $height){
+    width: $width;
+    height: $height;
+    background-color: red;
+    borderStyle: solid;
+    border-color: transparent;
+    border-radius: 3vw 0vw 0vw 3vw;
+    color: white;
+    @include customFont(Lato8, 6vw);
+    position: fixed;
+    top: 80vh;
+    right: 0vw;
+    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+}
+@mixin storePickerBtn($width, $height, $marginh, $marginv) {
+    width: $width;
+    height: $height;
+    margin-left: $marginh;
+    margin-right: $marginh;
+    margin-top: $marginv;
+    margin-bottom: $marginv;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2vw;
+    background-color: white;
+    border-color: rgb(225, 225, 225);
+    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+}
+@mixin alertBg () {
+    top: 0vw;
+    left:0vw;
+    background-color: rgba(0,0,0,0.4);
+    height: 100vh;
+    width: 100vw;
+}
+@mixin alertBtn() {
+ width: 50vw;
+ height: 50vw;
+ margin-top: 20vh;
+ margin-left: 25vw;
+ margin-right: 25vw;
+ border-style: solid;
+ border-width: 1px;
+ border-radius: 2vw;
+ background-color: red;
+ color: white;
+ border-color: red;
+ box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+ @include customFont(Lato8, 5vw);
+ animation: enterAnimation 0.5s;
+ @keyframes enterAnimation {
+    0% { transform: translateX(200%) }
+    100% { transform: translateX(0%) }
+  }
+}
+@mixin addBtn ($width, $height, $marginh, $marginv) {
+    width: $width;
+    height: $height;
+    margin-left: $marginh;
+    margin-right: $marginh;
+    margin-top: $marginv;
+    margin-bottom: $marginv;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2vw;
+    background-color: white;
+    border-color: rgb(225, 225, 225);
+    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+}

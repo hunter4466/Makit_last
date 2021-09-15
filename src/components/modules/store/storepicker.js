@@ -1,4 +1,6 @@
-import React from 'react';
+/* eslint-disable jsx-a11y/click-events-have-key-events */
+/* eslint-disable jsx-a11y/no-static-element-interactions */
+import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Redirect } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
@@ -13,6 +15,7 @@ import {
 import { buildProduct } from '../../../redux/cart/cart';
 
 const Storepicker = () => {
+  const [alert, setAlert] = useState(false);
   const dispatch = useDispatch();
   const pickerData = useSelector((state) => state.storePickerReducer);
   const productBuild = useSelector(((state) => state.productBuildReducer));
@@ -23,6 +26,9 @@ const Storepicker = () => {
     dispatch(opentItemPicker(info));
     dispatch(switchItemPicker(true));
   };
+
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
+
   const checkAll = (array) => {
     for (let i = 0; i < array.length; i += 1) {
       if (!array[i].completed) {
@@ -37,6 +43,7 @@ const Storepicker = () => {
       dispatch(buildProduct(productBuild));
       return (<Redirect push to="/store" />);
     }
+    setAlert(true);
     return false;
   };
   const handleBackBtn = () => {
@@ -45,28 +52,37 @@ const Storepicker = () => {
   };
   return (
     <div>
-      {switchState.loading3State ? <div><h1>Loading...</h1></div> : (
-        <div className="store_picker_container">
-          <div>
-            <div>StorePicker</div>
+      {switchState.loading3State ? <div className="loading_screen"><h1>Cargando...</h1></div> : (
+        <div className="store_picker_main_container">
+          <div className="store_picker_container">
+            <div className="store_picker_title">Selecciona tus productos</div>
             {pickerData.content.map((data) => (
-              <div key={data.name}>
-                <button
-                  className={data.completed ? 'completed_btn' : 'uncompleted_btn'}
-                  type="button"
-                  onClick={() => {
-                    handleClick2(data, data.name);
-                  }}
-                >
-                  {data.name}
-                </button>
-              </div>
+              <button
+                key={data.name}
+                className={data.completed ? 'completed_btn' : 'uncompleted_btn'}
+                type="button"
+                onClick={() => {
+                  handleClick2(data, data.name);
+                }}
+              >
+                {capitalizeFirstLetter(data.name)}
+              </button>
             ))}
-            {checkAll(pickerData.content) ? (<Link to="/shop" onClick={() => handleAddProductToCart()}>Agregar al carrito</Link>) : (<button type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>) }
-            <button type="button" onClick={() => handleBackBtn()}>Volver</button>
+            {checkAll(pickerData.content) ? (<Link className="add-btn-active" to="/shop" onClick={() => handleAddProductToCart()}><p>Agregar al carrito</p></Link>) : (<button className="add-btn-unactive" type="button" onClick={() => handleAddProductToCart()}>Agregar al carrito</button>) }
+            <button className="back-btn" type="button" onClick={() => handleBackBtn()}>Volver</button>
+
           </div>
+          {alert ? (
+            <div className="alert_bg" onClick={() => { setAlert(false); }}>
+              <button className="alert_btn" type="button" onClick={() => { setAlert(false); }}>
+                <p>Ups, parece que aun tienes items por escoger!...</p>
+                <p>Toca para continuar escogiendo</p>
+              </button>
+            </div>
+          ) : ''}
         </div>
       )}
+
     </div>
   );
 };

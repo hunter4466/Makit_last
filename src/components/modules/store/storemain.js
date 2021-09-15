@@ -34,13 +34,16 @@ const Storemain = () => {
   };
   return (
     <div>
-      {switchState.loading1State ? <div><h1>Loading</h1></div> : (
-        <div className="store_main_container">
+      {switchState.loading1State ? <div className="loading_screen"><h1>Cargando..</h1></div> : (
+        <div>
           {parentState
             ? (
-              <div>
+              <div className="store_main_container">
                 {productData.map((data) => (
-                  <button type="button" key={data.nombre} onClick={() => handleClick(data.idcategorias)}>{data.nombre}</button>
+                  <button className="main_menu_btn" type="button" key={data.nombre} onClick={() => handleClick(data.idcategorias)}>
+                    {data.nombre}
+                    <div className="button_bg" />
+                  </button>
                 ))}
               </div>
             ) : false}

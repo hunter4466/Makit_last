@@ -107,4 +107,7 @@
   height: 70vh;
   @include fade-enter;
 }
-
+@mixin customFont ($font, $fontsize) {
+ font-family: $font, serif;
+ font-size: $fontsize;
+}

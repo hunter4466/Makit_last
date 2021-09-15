@@ -1,4 +1,5 @@
 @import './modules/box';
+@import './fonts';
 
 body {
   user-select: none;
@@ -6,11 +7,11 @@ body {
 }
 .page_holder {
   width: 100vw;
-  @include flexbox(column)
+  @include flexbox(column);
 }
 .navigator_bar {
   width: 100vw;
-  height: 25vw;
+  height: 15vw;
   @include flexbox(row);
   background-color: rgb(255, 255, 255);
 }
@@ -21,5 +22,23 @@ body {
 }
 .nav_item img {
   margin-top: 3vw;
-  width: 60%;
+  width: 20%;
+}
+// ----- Loading screen ------
+
+.loading_screen {
+  text-align: center;
+  width: 100vw;
+  height: 150vw;
+  padding-top:50vw;
+  @include customFont(Lato1, 5vw);
+  animation: loadinganim 1s infinite;
+}
+
+@keyframes loadinganim {
+  0% { transform: scale(1);}
+  40% { transform: scale(1.2);}
+  50% { transform: scale(1);}
+  60% { transform: scale(1.2);}
+  100% { transform: scale(1);}
 }
