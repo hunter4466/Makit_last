@@ -44,23 +44,23 @@ const Namepicker = () => {
   return (
     <div>
       {username ? (
-        <div>
-          <h1>
-            Tu nombre es
+        <div className="question_frame">
+          <h1 className="question_title">
+            Tu nombre es:
             {' '}
             {username}
             ?
           </h1>
-          <button type="button" onClick={() => { handleClick(true); }}>Sí</button>
-          <button type="button" onClick={() => { handleClick(false); }}>No</button>
-          <button type="button" onClick={() => { handleBackClick(); }}>Volver</button>
+          <button className="yes_no_btn" type="button" onClick={() => { handleClick(true); }}>Sí</button>
+          <button className="yes_no_btn" type="button" onClick={() => { handleClick(false); }}>No</button>
+          <button className="back-btn" type="button" onClick={() => { handleBackClick(); }}>Volver</button>
         </div>
       ) : (
-        <div>
-          <h1>Indícanos tu nombre</h1>
-          <input onChange={() => { handleChange(); }} type="text" maxLength="50" placeholder="Nombre" id="custom_name_input" />
-          <button type="button" onClick={() => { handleClick2(); }}>Aceptar</button>
-          <button type="button" onClick={() => { handleBackClick(); }}>Volver</button>
+        <div className="question_frame">
+          <h1 className="question_title">Indícanos tu nombre</h1>
+          <input className="question_input" onChange={() => { handleChange(); }} type="text" maxLength="50" placeholder="Nombre" id="custom_name_input" />
+          <button className="accept_btn" type="button" onClick={() => { handleClick2(); }}>Aceptar</button>
+          <button className="back-btn" type="button" onClick={() => { handleBackClick(); }}>Volver</button>
         </div>
       )}
     </div>

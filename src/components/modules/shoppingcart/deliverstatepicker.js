@@ -28,11 +28,11 @@ const Deliverstatepicker = () => {
     dispatch(switchphonepicker(true));
   };
   return (
-    <div>
-      <h1>Donde deseas tu pedido?</h1>
-      <button type="button" onClick={() => { handleDeliveryClick(true); }}>En mi domicilio (Delivery)</button>
-      <button type="button" onClick={() => { handleDeliveryClick(false); }}>En el local (Recojo)</button>
-      <button type="button" onClick={() => { handleBackClick(); }}>Volver</button>
+    <div className="question_frame">
+      <h1 className="question_title">Como deseas tu pedido?</h1>
+      <button className="yes_no_btn" type="button" onClick={() => { handleDeliveryClick(true); }}>Delivery</button>
+      <button className="yes_no_btn" type="button" onClick={() => { handleDeliveryClick(false); }}>Recojo</button>
+      <button className="back-btn" type="button" onClick={() => { handleBackClick(); }}>Volver</button>
     </div>
   );
 };

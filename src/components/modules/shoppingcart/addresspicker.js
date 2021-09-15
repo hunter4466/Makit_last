@@ -66,8 +66,8 @@ const Addresspicker = () => {
   return (
     <div>
       {useradressactive ? (
-        <div>
-          <h1>
+        <div className="question_frame">
+          <h1 className="question_title">
             Confirmamos tu dirección en:
             {' '}
             {userSavedAddress.address}
@@ -77,9 +77,9 @@ const Addresspicker = () => {
             {userSavedAddress.reference}
             {'? '}
           </h1>
-          <button type="button" onClick={() => { handleNextClick(); }}>Sí</button>
-          <button type="button" onClick={() => { handleClick(false); }}>No</button>
-          <button type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
+          <button className="yes_no_btn" type="button" onClick={() => { handleNextClick(); }}>Sí</button>
+          <button className="yes_no_btn" type="button" onClick={() => { handleClick(false); }}>No</button>
+          <button className="back-btn" type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
         </div>
       ) : (
         <div>
@@ -91,11 +91,9 @@ const Addresspicker = () => {
             {({
               getInputProps, suggestions, getSuggestionItemProps, loading,
             }) => (
-              <div>
-                <h1>A donde lo enviamos?</h1>
-                <input id="custom_address_input" {...getInputProps({ placeholder: 'Dirección' })} />
-                <input id="interior_address_input" type="text" maxLength="144" placeholder="Interior (Ejemplo: Mz B Lote 1, dpto 102)" />
-                <input id="custom_reference_input" type="text" maxLength="144" placeholder="Referencia" />
+              <div className="question_frame">
+                <h1 className="question_title">A donde lo enviamos?</h1>
+                <textarea className="address_text_area" id="custom_address_input" {...getInputProps({ placeholder: 'Dirección' })} />
                 <div>
                   {loading ? <div>...cargando</div> : null}
 
@@ -105,6 +103,7 @@ const Addresspicker = () => {
                     };
                     return (
                       <div
+                        className="suggestion_list"
                         key={miniIdGenerator()}
                         {...getSuggestionItemProps(
                           suggestion,
@@ -116,8 +115,10 @@ const Addresspicker = () => {
                     );
                   })}
                 </div>
-                <button type="button" onClick={() => { handleClick(true); }}>Aceptar</button>
-                <button type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
+                <input className="address_input" id="interior_address_input" type="text" maxLength="144" placeholder="Interior (Ejemplo: Mz B Lote 1, dpto 102)" />
+                <textarea className="address_input" id="custom_reference_input" type="text" maxLength="144" placeholder="Referencia" />
+                <button className="accept_btn" type="button" onClick={() => { handleClick(true); }}>Aceptar</button>
+                <button className="back-btn" type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
               </div>
             )}
           </PlacesAutocomplete>

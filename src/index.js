@@ -6,6 +6,8 @@ import store from './redux/configureStore';
 import './styles/_fonts.scss';
 import './styles/_store.scss';
 import './styles/_main.scss';
+import './styles/_cart.scss';
+import './styles/_home.scss';
 
 ReactDOM.render(
   <React.StrictMode>

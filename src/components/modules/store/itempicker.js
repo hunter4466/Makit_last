@@ -137,9 +137,9 @@ const Itempicker = () => {
               </h1>
               <p className="item_description" id="sub_item_description">{innerdata.descripcion}</p>
               <div className="select_btns_container">
-                <button className="item_up_btn" type="button" onClick={() => { handleUpClick(itemData.content.name.split(' ').join('_'), innerdata.codename); }}> </button>
-                <input disabled className={`item_input ${itemData.content.name.split(' ').join('_')}`} id={innerdata.codename} type="number" defaultValue={0} />
                 <button className="item_down_btn" type="button" onClick={() => { handleDownClick(innerdata.codename); }}> </button>
+                <input disabled className={`item_input ${itemData.content.name.split(' ').join('_')}`} id={innerdata.codename} type="number" defaultValue={0} />
+                <button className="item_up_btn" type="button" onClick={() => { handleUpClick(itemData.content.name.split(' ').join('_'), innerdata.codename); }}> </button>
               </div>
             </div>
           </div>
@@ -156,7 +156,7 @@ const Itempicker = () => {
       )}
       {uncompleteAlert ? (<div>Background</div>) : ''}
       {uncompleteAlert ? (<div className="alert_bg" onClick={() => { setUncAlert(false); }}><button type="button" className="alert_btn">Aun tienes items por escoger! Toca aquí para volver</button></div>) : ''}
-      <button className="accept_btn" type="button" onClick={() => { handleAddClick(itemData.content.name.split(' ').join('_')); }}>Aceptar</button>
+      <button className="accept_btn_store" type="button" onClick={() => { handleAddClick(itemData.content.name.split(' ').join('_')); }}>Aceptar</button>
       <button className="back-btn" type="button" onClick={() => handleBackBtn()}>Volver</button>
     </div>
   );

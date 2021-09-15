@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
@@ -75,33 +77,54 @@ const Cartitempicker = () => {
     dispatch(switchCartItemPicker(false));
     dispatch(switchCartStorePicker(true));
   };
+  const importedPictures = (data) => {
+    try {
+      const photo = require(`../../../images/items/${data}.png`);
+      return photo;
+    } catch {
+      return 'undefined';
+    }
+  };
   return (
-    <div>
-      <h1>
+    <div className="item_picker_main_container">
+      <h1 className="item_picker_title">
         Elige tus
         {' '}
         {itemData.header}
       </h1>
       {itemData.content.map((innerdata) => (
-        <div key={innerdata.name}>
-          <h1 id="sub_item_name">
-            {innerdata.name}
-          </h1>
-          <p id="sub_item_description">{innerdata.description}</p>
-          <div>
-            <input className={`classident_${itemData.header.split(' ').join('_')}`} id={innerdata.codename} type="number" defaultValue={innerdata.quantity} />
-            <div>
-              <button type="button" onClick={() => { handleUpClick(`classident_${itemData.header.split(' ').join('_')}`, innerdata.codename); }}>Up</button>
-              <button type="button" onClick={() => { handleDownClick(innerdata.codename); }}>Down</button>
+        <div className="description_container" key={innerdata.name}>
+          <div className="description_sub_container">
+            <div className="description_img_container">
+              <img src={`.${importedPictures(innerdata.codename).default}`} alt="preview" />
+            </div>
+            <div className="description_text_container">
+              <h1 className="item_name" id="sub_item_name">
+                {innerdata.name}
+              </h1>
+              <p className="item_description" id="sub_item_description">{innerdata.description}</p>
+              <div className="select_btns_container">
+                <button className="item_down_btn" type="button" onClick={() => { handleDownClick(innerdata.codename); }}> </button>
+                <input disabled className={`item_input classident_${itemData.header.split(' ').join('_')}`} id={innerdata.codename} type="number" defaultValue={innerdata.quantity} />
+                <button className="item_up_btn" type="button" onClick={() => { handleUpClick(`classident_${itemData.header.split(' ').join('_')}`, innerdata.codename); }}> </button>
+              </div>
             </div>
           </div>
         </div>
       ))}
-      <div>{completedFields ? 'Completed' : `Tienes ${itemsCounter} por escoger`}</div>
+      {completedFields ? <div className="counter counter-true">Estás listo!</div> : (
+        <div className="counter counter-false">
+          Aun tienes
+          {' '}
+          {itemsCounter}
+          {' '}
+          items por escoger
+        </div>
+      )}
       {uncompleteAlert ? (<div>Background</div>) : ''}
       {uncompleteAlert ? (<div onClick={() => { setUncAlert(false); }}><h1>Aun tienes items por escoger!</h1></div>) : ''}
-      <button type="button" onClick={() => { handleAddClick(`classident_${itemData.header.split(' ').join('_')}`); }}>Aceptar</button>
-      <button type="button" onClick={() => handleBackBtn()}>Volver</button>
+      <button className="accept_btn" type="button" onClick={() => { handleAddClick(`classident_${itemData.header.split(' ').join('_')}`); }}>Aceptar</button>
+      <button className="back-btn_store" type="button" onClick={() => handleBackBtn()}>Volver</button>
     </div>
   );
 };

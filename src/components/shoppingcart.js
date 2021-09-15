@@ -35,44 +35,43 @@ const ShoppingCart = () => {
     dispatch(switchnamepicker(true));
     dispatch(switchShoppingCart(false));
   };
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
   return (
     <div>
       { switchState.shoppingcart ? (
-        <div>
+        <div className="shopping_cart_container">
           {
       data.ordercontent.length > 0
         ? (
           <div>
+            <h1 className="cart_header_title">Mis productos</h1>
             {data.ordercontent.map((eh) => (
-              <div key={`${eh.header}${miniIdGenerator()}`}>
-                <button type="button" onClick={() => { handleEditClick(eh); }}>
-                  <h1>{eh.header}</h1>
-                  {eh.content.map((ec) => (
-                    <div key={ec.header}>
-                      <h2>{ec.header}</h2>
-                      {ec.content.map((ecc) => (
-                        ecc.quantity > 0
-                          ? (
-                            <h3 key={ecc.name}>
-                              {ecc.name}
-                              {' x '}
-                              {ecc.quantity}
-                            </h3>
-                          ) : ''
-                      ))}
-                    </div>
-                  ))}
-                  <footer>{eh.price}</footer>
-                </button>
-              </div>
+              <button className="cart_prod_btn" key={`${eh.header}${miniIdGenerator()}`} type="button" onClick={() => { handleEditClick(eh); }}>
+                <h1 className="cart_prod_btn_title">{capitalizeFirstLetter(eh.header)}</h1>
+                {eh.content.map((ec) => (
+                  <div key={capitalizeFirstLetter(ec.header)}>
+                    <h2 className="cart_prod_btn_item">{capitalizeFirstLetter(ec.header)}</h2>
+                    {ec.content.map((ecc) => (
+                      ecc.quantity > 0
+                        ? (
+                          <h3 className="cart_prod_btn_sub_item" key={ecc.name}>
+                            {ecc.name}
+                            {' x '}
+                            {ecc.quantity}
+                          </h3>
+                        ) : ''
+                    ))}
+                  </div>
+                ))}
+                <footer className="cart_prod_btn_footer">
+                  <p className="cart_prod_btn_modify">Edita aquí</p>
+                  <p className="cart_prod_btn_price">{`S/ ${eh.price}`}</p>
+                </footer>
+              </button>
             ))}
-            <h1>Monto de compra</h1>
-            <h2>{`S/ ${parseFloat(data.orderproductsamount).toFixed(2)}`}</h2>
-            <h1>Delivery</h1>
-            <h2>{`S/ ${parseFloat(data.orderdeliveryamount).toFixed(2)}`}</h2>
-            <h1>Total</h1>
-            <h2>{`S/ ${parseFloat(data.orderamounttotal).toFixed(2)}`}</h2>
-            <button type="button" onClick={() => { sendOrderStepOne(); }}>Enviar pedido</button>
+            <h1 className="shopping_cart_total_title">Total</h1>
+            <h2 className="shopping_cart_total_price">{`S/ ${parseFloat(data.orderproductsamount).toFixed(2)}`}</h2>
+            <button className="shopping_cart_first_send_btn" type="button" onClick={() => { sendOrderStepOne(); }}>Enviar pedido</button>
           </div>
 
         ) : <Link to="/store"> Aun no tienes items en tu carrito, ingresa aquí y agrégalos ya mismo!</Link>

@@ -17,7 +17,7 @@
 @mixin back_btn($width, $height){
     width: $width;
     height: $height;
-    background-color: red;
+    background-color: rgb(225, 60, 60);
     borderStyle: solid;
     border-color: transparent;
     border-radius: 3vw 0vw 0vw 3vw;
@@ -58,9 +58,9 @@
  border-style: solid;
  border-width: 1px;
  border-radius: 2vw;
- background-color: red;
+ background-color: rgb(225, 60, 60);
  color: white;
- border-color: red;
+ border-color: rgb(225, 60, 60);
  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
  @include customFont(Lato8, 5vw);
  animation: enterAnimation 0.5s;
@@ -98,4 +98,32 @@
 @mixin downBtn () {
     @include upanddowncommon();
     background: url('../../images/icons/downarrow.svg') no-repeat
+}
+@mixin yesandnoBtn ($left, $right, $width, $height) {
+    width: $width;
+    height: $height;
+    margin-left: $left;
+    margin-right: $right;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2vw;
+    border-color: rgb(225, 225, 225);
+    background-color: rgb(225, 60, 60);
+    color: white;
+    margin-bottom: 5vw;
+    @include customFont(Lato3, 6vw);
+}
+@mixin questionInput($left, $right, $width, $height) {
+    width: $width;
+    height: $height;
+    margin-left: $left;
+    margin-right: $right;
+    margin-top: 2vw;
+    border-style: solid;
+    border-width: 0.25vw;
+    border-color:  transparent transparent rgb(225, 225, 225) transparent;
+    text-align: center;
+    &:focus {
+        outline-width: 0;
+    }
 }

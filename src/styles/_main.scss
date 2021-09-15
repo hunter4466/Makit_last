@@ -21,8 +21,24 @@ body {
   text-align: center;
 }
 .nav_item img {
-  margin-top: 3vw;
+  margin-top: 5vw;
   width: 20%;
+}
+.selected_nav_item {
+  width: 33vw;
+  height: 25vw;
+  text-align: center;
+}
+.selected_nav_item img {
+  margin-top: 1vw;
+  width: 40%;
+  animation: navimgincrease 0.2s;
+}
+@keyframes navimgincrease {
+  0%{margin-top: 5vw;
+    width: 20%;}
+  100%{margin-top: 1vw;
+    width: 40%;}
 }
 // ----- Loading screen ------
 

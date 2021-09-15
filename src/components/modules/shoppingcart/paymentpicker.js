@@ -26,15 +26,16 @@ const Paymentpicker = () => {
     }
   };
   return (
-    <div>
-      <button type="button" onClick={() => { handleClick('Yape'); }}>Yape</button>
-      <button type="button" onClick={() => { handleClick('Plin'); }}>Plin</button>
-      <button type="button" onClick={() => { handleClick('PagoLink (VISA)'); }}>VISA (Pagolink)</button>
-      <button type="button" onClick={() => { handleClick('PagoLink (Mastercard)'); }}>Mastercard (Pagolink)</button>
-      <button type="button" onClick={() => { handleClick('PagoLink (Amex)'); }}>AMEX (Pagolink)</button>
-      <button type="button" onClick={() => { handleClick('Transferencia BCP'); }}>Transferencia BCP</button>
-      <button type="button" onClick={() => { handleClick('Transferencia BBVA'); }}>Transferencia BBVA</button>
-      <button type="button" onClick={() => { handleBackClick(); }}>Volver</button>
+    <div className="payment_section_container">
+      <h1 className="payment_title">Selecciona un medio de pago</h1>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('Yape'); }}>Yape</button>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('Plin'); }}>Plin</button>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('PagoLink (VISA)'); }}>VISA (Pagolink)</button>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('PagoLink (Mastercard)'); }}>Mastercard (Pagolink)</button>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('PagoLink (Amex)'); }}>AMEX (Pagolink)</button>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('Transferencia BCP'); }}>Transferencia BCP</button>
+      <button className="payment_btn" type="button" onClick={() => { handleClick('Transferencia BBVA'); }}>Transferencia BBVA</button>
+      <button className="back-btn" type="button" onClick={() => { handleBackClick(); }}>Volver</button>
     </div>
   );
 };

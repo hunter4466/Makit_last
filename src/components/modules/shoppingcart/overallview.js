@@ -73,7 +73,7 @@ const Overallview = () => {
       <h1>Total</h1>
       <h2>{`S/ ${parseFloat(data.orderamounttotal).toFixed(2)}`}</h2>
       <button type="button" onClick={() => { sendOrderFinalStep(); }}>Enviar pedido</button>
-      <button type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
+      <button className="back-btn" type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
       <button type="button" onClick={() => { handleBackToCartBtn(); }}>Volver al carro</button>
       {confirmation
         ? (
@@ -85,7 +85,7 @@ const Overallview = () => {
               Todos los items en el carro desaparecerán al enviar tu pedido
             </h2>
             <button type="button" onClick={() => { handleContinueConfirmationBtn(); }}>Aceptar</button>
-            <button type="button" onClick={() => { handleBackConfirmationBtn(); }}>Volver</button>
+            <button className="back-btn" type="button" onClick={() => { handleBackConfirmationBtn(); }}>Volver</button>
           </div>
         )
         : ''}

@@ -37,9 +37,9 @@ const Cartstorepicker = () => {
     dispatch(switchShoppingCart(true));
   };
   return (
-    <div className="store_picker_container">
-      <div>
-        <div>StorePicker</div>
+    <div className="store_picker_main_container">
+      <div className="store_picker_container">
+        <div className="store_picker_title">Selecciona tus productos</div>
         {pickerData.content.map((data) => (
           <div key={data.header}>
             <button
@@ -53,8 +53,8 @@ const Cartstorepicker = () => {
             </button>
           </div>
         ))}
-        <button type="button" onClick={() => handleAddProductToCart()}>Terminar modificaciones</button>
-        <button type="button" onClick={() => handleBackBtn()}>Volver</button>
+        <button className="add-btn-active" type="button" onClick={() => handleAddProductToCart()}>Terminar modificaciones</button>
+        <button className="back-btn" type="button" onClick={() => handleBackBtn()}>Volver</button>
       </div>
     </div>
   );
