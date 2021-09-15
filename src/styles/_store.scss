@@ -132,7 +132,7 @@
 }
 .uncompleted_btn {
     @include storePickerBtn(70vw, 15vw, 10vw, 2vw);
-    @include customFont(Lato1, 5vw);
+    @include customFont(Lato3, 5vw);
 }
 .alert_bg {
     position: fixed;
