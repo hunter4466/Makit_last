@@ -83,3 +83,19 @@
     border-color: rgb(225, 225, 225);
     box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
 }
+@mixin upanddowncommon {
+    width: 6vw;
+    height: 4vw;
+    border-style: none;
+    margin-left: 6.5vw;
+    margin-right: 6.5vw;
+}
+
+@mixin upBtn () {
+    @include upanddowncommon();
+    background: url('../../images/icons/uparrow.svg') no-repeat
+}
+@mixin downBtn () {
+    @include upanddowncommon();
+    background: url('../../images/icons/downarrow.svg') no-repeat
+}

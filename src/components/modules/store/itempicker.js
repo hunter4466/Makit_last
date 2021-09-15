@@ -1,3 +1,5 @@
+/* eslint-disable import/no-dynamic-require */
+/* eslint-disable global-require */
 /* eslint-disable jsx-a11y/no-static-element-interactions */
 /* eslint-disable jsx-a11y/click-events-have-key-events */
 import React, { useEffect, useState } from 'react';
@@ -108,32 +110,53 @@ const Itempicker = () => {
     dispatch(switchItemPicker(false));
     dispatch(switchStorePicker(true));
   };
+  const importedPictures = (data) => {
+    try {
+      const photo = require(`../../../images/items/${data}.png`);
+      return photo;
+    } catch {
+      return 'undefined';
+    }
+  };
   return (
-    <div>
-      <h1>
+    <div className="item_picker_main_container">
+      <h1 className="item_picker_title">
         Elige tus
         {' '}
         {itemData.header}
       </h1>
       {itemData.content.content.map((innerdata) => (
-        <div key={innerdata.nombre}>
-          <h1 id="sub_item_name">
-            {innerdata.nombre}
-          </h1>
-          <p id="sub_item_description">{innerdata.descripcion}</p>
-          <div>
-            <input className={itemData.content.name.split(' ').join('_')} id={innerdata.codename} type="number" defaultValue={0} />
-            <div>
-              <button type="button" onClick={() => { handleUpClick(itemData.content.name.split(' ').join('_'), innerdata.codename); }}>Up</button>
-              <button type="button" onClick={() => { handleDownClick(innerdata.codename); }}>Down</button>
+        <div className="description_container" key={innerdata.nombre}>
+          <div className="description_sub_container">
+            <div className="description_img_container">
+              <img src={`.${importedPictures(innerdata.codename).default}`} alt="preview" />
+            </div>
+            <div className="description_text_container">
+              <h1 className="item_name" id="sub_item_name">
+                {innerdata.nombre}
+              </h1>
+              <p className="item_description" id="sub_item_description">{innerdata.descripcion}</p>
+              <div className="select_btns_container">
+                <button className="item_up_btn" type="button" onClick={() => { handleUpClick(itemData.content.name.split(' ').join('_'), innerdata.codename); }}> </button>
+                <input disabled className={`item_input ${itemData.content.name.split(' ').join('_')}`} id={innerdata.codename} type="number" defaultValue={0} />
+                <button className="item_down_btn" type="button" onClick={() => { handleDownClick(innerdata.codename); }}> </button>
+              </div>
             </div>
           </div>
         </div>
       ))}
-      <div>{completedFields ? 'Completed' : `Tienes ${itemsCounter} por escoger`}</div>
+      {completedFields ? <div className="counter counter-true">Estás listo!</div> : (
+        <div className="counter counter-false">
+          Aun tienes
+          {' '}
+          {itemsCounter}
+          {' '}
+          items por escoger
+        </div>
+      )}
       {uncompleteAlert ? (<div>Background</div>) : ''}
       {uncompleteAlert ? (<div className="alert_bg" onClick={() => { setUncAlert(false); }}><button type="button" className="alert_btn">Aun tienes items por escoger! Toca aquí para volver</button></div>) : ''}
-      <button type="button" onClick={() => { handleAddClick(itemData.content.name.split(' ').join('_')); }}>Aceptar</button>
+      <button className="accept_btn" type="button" onClick={() => { handleAddClick(itemData.content.name.split(' ').join('_')); }}>Aceptar</button>
       <button className="back-btn" type="button" onClick={() => handleBackBtn()}>Volver</button>
     </div>
   );
