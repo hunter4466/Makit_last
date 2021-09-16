@@ -1,6 +1,10 @@
 @import './modules/box';
 @import './fonts';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   user-select: none;
   margin: 0;

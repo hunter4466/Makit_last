@@ -13,6 +13,7 @@ const [
   MODIFY_USER_ADDRESS_AND_REF,
   MODIFY_PAYMENT_METHOD,
   CLEAR_CART,
+  REMOVE_ITEM_FROM_CART,
 ] = [
   'REDUX/CART/REFRESH_CART',
   'REDUX/CART/APPEND_PRODUCT_TO_CART',
@@ -24,6 +25,7 @@ const [
   'REDUX/CART/MODIFY_USER_ADDRESS_AND_REF',
   'REDUX/CART/MODIFY_PAYMENT_METHOD',
   'REDUX/CART/CLEAR_CART',
+  'REDUX/CART/REMOVE_ITEM_FROM_CART',
 ];
 // ---- Cart switch -----
 const [
@@ -101,6 +103,10 @@ const modifypaymentmethod = (payload) => ({
 });
 const clearCart = () => ({
   type: CLEAR_CART,
+});
+const removeItemFromCart = (payload) => ({
+  type: REMOVE_ITEM_FROM_CART,
+  payload,
 });
 // ---- Cart switch -----
 const switchShoppingCart = (payload) => ({
@@ -258,6 +264,16 @@ const cartReducer = (state = cartReducerInitialState(), action) => {
     }
     return priceValue;
   };
+  const removeItemFromContent = () => {
+    const elements = state.ordercontent;
+    const newArray = [];
+    elements.forEach((e) => {
+      if (e.code !== action.payload) {
+        newArray.push(e);
+      }
+    });
+    return newArray;
+  };
   switch (action.type) {
     case REFRESH_CART:
       return state;
@@ -315,6 +331,26 @@ const cartReducer = (state = cartReducerInitialState(), action) => {
     case MODIFY_PAYMENT_METHOD:
       stateObject.paymentmethod = action.payload;
       return stateObject;
+    case REMOVE_ITEM_FROM_CART:
+      return {
+        ordercontent: removeItemFromContent(),
+        customerid: state.customerid,
+        customername: state.customername,
+        customerphone: state.customerphone,
+        code: state.code,
+        orderaddress: state.orderaddress,
+        orderinneradress: state.orderinneradress,
+        orderaddressref: state.orderaddressref,
+        orderproductsamount: state.orderproductsamount,
+        orderamounttotal: state.orderamounttotal,
+        orderdeliverystate: state.orderdeliverystate,
+        orderdeliveryamount: state.orderdeliveryamount,
+        paymentmethod: state.paymentmethod,
+        orderregisterdate: state.orderregisterdate,
+        orderdeliverdate: state.orderdeliverdate,
+        orderregistertime: state.orderregistertime,
+        orderdelivertime: state.orderdelivertime,
+      };
     default:
       return state;
   }
@@ -368,6 +404,7 @@ const saveCartInfoMiddleware = (store) => (next) => (action) => {
       MODIFY_USER_PHONE,
       MODIFY_USER_ADDRESS_AND_REF,
       MODIFY_PAYMENT_METHOD,
+      REMOVE_ITEM_FROM_CART,
     ];
     let returnValue = false;
     sample.forEach((e) => {
@@ -414,6 +451,7 @@ export {
   setdeliverystartpointswitch,
   switchoverallview,
   clearCart,
+  removeItemFromCart,
   // ---- Middlewares -----
   saveCartInfoMiddleware,
 };

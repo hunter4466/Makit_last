@@ -34,18 +34,30 @@
 
 .cart_prod_btn_title {
   @include customFont(Lato3, 9vw);
+  margin-bottom: 1vw;
+  margin-top: 3vw;
+  border-style: solid;
+  border-width: 0.5;
+  border-color:rgba(0, 0, 0, 0.1);
+  border-bottom-color: transparent;
+  border-radius: 4vw 4vw 0vw 0vw;
+  padding-left: 3vw;
+  padding-top: 2vw;
+  height: 12vw;
 }
 
 .cart_prod_btn_item {
-  @include customFont(Lato3, 5vw);
-
+  @include customFont(Lato3, 7vw);
   margin-left: 2vw;
+  margin-bottom: 1vw;
+  margin-top: 4vw;
 }
 
 .cart_prod_btn_sub_item {
-  @include customFont(Lato3, 3vw);
-
+  @include customFont(Lato3, 5vw);
   margin-left: 4vw;
+  margin-bottom: 1vw;
+  margin-top: 0vw;
 }
 
 .cart_prod_btn_footer {
@@ -56,11 +68,15 @@
 }
 
 .cart_prod_btn_modify {
+  text-align: center;
   @include customFont(Lato3, 6vw);
-
-  width: 40vw;
+  color: white;
+  width: 25vw;
+  height: 8vw;
   margin-left: 0;
   margin-top: 2vw;
+  background-color: rgba(255, 89, 0, 0.713);
+  border-radius: 2vw;
 }
 
 .cart_prod_btn_price {
@@ -101,6 +117,45 @@
   @include customFont(Lato1, 6vw);
 
   box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+}
+.clear_prod_btn {
+  background-color: rgb(225, 60, 60);
+  @include customFont(Lato3, 6vw);
+  color: white;
+  width: 25vw;
+  height: 11.5vw;
+  margin-left: 5vw;
+  margin-top: -3.1vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0vw 0vw 2vw 2vw;
+  border-color: transparent;
+}
+.go_to_send_btn {
+  position: fixed;
+  top: 20vh;
+  right: -16vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw 2vw 0vw 0vw;
+  border-color: transparent;
+  background-color: rgb(225, 60, 60);
+  @include customFont(Lato3, 6vw);
+  color: white;
+  transform: rotate(270deg);
+}
+.keep_buying_btn {
+  position: fixed;
+  top: 50vh;
+  right: -21.7vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw 2vw 0vw 0vw;
+  border-color: transparent;
+  background-color: rgb(126, 223, 126);
+  @include customFont(Lato3, 6vw);
+  color: white;
+  transform: rotate(270deg);
 }
 // ----------------picker generals --------------------
 .question_frame {

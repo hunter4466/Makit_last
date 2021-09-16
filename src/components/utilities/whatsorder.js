@@ -20,7 +20,7 @@ const whatsorder = (order) => {
   if (order.orderdeliverystate) { stringArray.push('%20Incluido%20el%20recargo%20por%20envío%20de%20S/%204.90%0A%0A'); } else { stringArray.push('%20Incluido%20el%20recargo%20por%20envío%20de%20S/%204.90%0A%0A'); }
   stringArray.push(`%20Realizaré%20el%20pago%20a%20través%20de:%20${order.paymentmethod.split(' ').join('%20')}`);
   const urlPath = `https://api.whatsapp.com/send?phone=51994172125&text=${stringArray.reduce((a, b) => a + b)}`;
-  window.open(urlPath, '_blank').focus();
+  window.location.href = urlPath;
 };
 
 export default whatsorder;
