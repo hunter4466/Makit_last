@@ -18,6 +18,7 @@ import Addresspicker from './modules/shoppingcart/addresspicker';
 import Paymentpicker from './modules/shoppingcart/paymentpicker';
 import Overallview from './modules/shoppingcart/overallview';
 import { miniIdGenerator } from './utilities/idgen';
+import mlogosticks from '../images/icons/mlogosticks.svg';
 // import whatsorder from './utilities/whatsorder';
 
 const ShoppingCart = () => {
@@ -89,7 +90,14 @@ const ShoppingCart = () => {
             <button className="shopping_cart_first_send_btn" type="button" onClick={() => { sendOrderStepOne(); }}>Enviar pedido</button>
           </div>
 
-        ) : <Link to="/store"> Aun no tienes items en tu carrito, ingresa aquí y agrégalos ya mismo!</Link>
+        ) : (
+          <div className="nothing_in_cart_container">
+            <Link to="/store">
+              <h1 className="nothing_in_cart_title">Aun no tienes items en tu carrito, ingresa aquí y agrégalos ya mismo!</h1>
+              <img className="nothing_in_cart_image" alt="nothing in cart img" src={mlogosticks} />
+            </Link>
+          </div>
+        )
         }
         </div>
       ) : ''}
