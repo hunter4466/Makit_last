@@ -1,42 +1,52 @@
-import React, { Component } from 'react';
+import React from 'react';
+import { useDispatch } from 'react-redux';
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  NavLink,
+  Redirect,
+} from 'react-router-dom';
+import HomePage from './components/homepage';
+import ShoppingCart from './components/shoppingcart';
+import Store from './components/store';
+import { resetCartSwitch } from './redux/cart/cart';
+import { resetStore } from './redux/store/store';
+import home from './images/icons/home.svg';
+import store from './images/icons/store.svg';
+import shoppingcart from './images/icons/shopping_cart.svg';
 
-// eslint-disable-next-line react/prefer-stateless-function
-class App extends Component {
-  constructor(props) {
-    super(props);
-    // No llames this.setState() aquí!
-    this.state = {
-      data: null,
-    };
-    this.componentDidMount = this.componentDidMount.bind(this);
-    this.callBackendAPI = this.callBackendAPI.bind(this);
-  }
-
-  componentDidMount() {
-    this.callBackendAPI()
-      .then((res) => this.setState({ data: res.express }));
-  }
-
-  // fetching the GET route from the Express server which matches the GET route from server.js
-      callBackendAPI = async () => {
-        const response = await fetch('/');
-        const body = await response.json();
-
-        if (response.status !== 200) {
-          throw Error(body.message);
-        }
-        return body;
-      };
-
-      render() {
-        const status = this.state;
-        return (
-          <div className="App">
-            <h1>hello world</h1>
-            <h1>{status.data}</h1>
-          </div>
-        );
-      }
-}
+const App = () => {
+  const dispatch = useDispatch();
+  const handleStoreCloseClick = () => {
+    dispatch(resetStore());
+    dispatch(resetCartSwitch());
+  };
+  return (
+    <Router>
+      <div className="page_holder">
+        <div className="navigator_bar">
+          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/home"><img alt="home" src={home} /></NavLink>
+          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/store"><img alt="home" src={store} /></NavLink>
+          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/shop"><img alt="home" src={shoppingcart} /></NavLink>
+        </div>
+        <Switch>
+          <Route exact path="/">
+            <Redirect to="/home" />
+          </Route>
+          <Route path="/home">
+            <HomePage />
+          </Route>
+          <Route path="/store">
+            <Store />
+          </Route>
+          <Route path="/shop">
+            <ShoppingCart />
+          </Route>
+        </Switch>
+      </div>
+    </Router>
+  );
+};
 
 export default App;

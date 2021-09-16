@@ -1,20 +1,19 @@
 import React from 'react';
+import { Provider } from 'react-redux';
 import ReactDOM from 'react-dom';
-import './styles/_calculator.scss';
-import './styles/_home.scss';
-import './styles/_quote.scss';
-import './styles/_main.scss';
 import App from './App';
-import reportWebVitals from './reportWebVitals';
+import store from './redux/configureStore';
+import './styles/_fonts.scss';
+import './styles/_store.scss';
+import './styles/_main.scss';
+import './styles/_cart.scss';
+import './styles/_home.scss';
 
 ReactDOM.render(
   <React.StrictMode>
-    <App />
+    <Provider store={store}>
+      <App />
+    </Provider>
   </React.StrictMode>,
   document.getElementById('root'),
 );
-
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log)
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();

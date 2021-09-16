@@ -1,0 +1,375 @@
+#back_btn{
+    font-size: 6vw;
+    padding-left: 10%;
+    text-align: left;
+    color: white;
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.4);
+    position: fixed;
+    border-radius: 5vw;
+    background-color: rgb(182, 0, 0);
+    right: -10vw;
+    bottom: 5vh;
+    height: 6vh;
+    width: 35vw;
+    z-index: 2;
+    
+}
+#back_btn:active{
+    animation-name: back_click;
+    animation-duration: 0.2s;
+}
+@keyframes back_click{
+0%{  right: -10vw;}
+100%{ right: -14vw;}
+}
+
+#time_and_zones{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:66vw;
+    height: 8vw;
+    top:204vw;
+    left: 8vw;
+    z-index: 1;
+}
+#how_to_order{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:51vw;
+    height: 8vw;
+    top:214.5vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_combos{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:36vw;
+    height: 8vw;
+    top:225vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_1_tables{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:30vw;
+    height: 6vw;
+    top:234.5vw;
+    left: 16vw;
+    z-index: 1;
+}
+#go_to_2_tables{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:30vw;
+    height: 6vw;
+    top:241.5vw;
+    left: 16vw;
+    z-index: 1;
+}
+#go_to_3_tables{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:30vw;
+    height: 6vw;
+    top:248.5vw;
+    left: 16vw;
+    z-index: 1;
+}
+#go_to_4_tables{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:30vw;
+    height: 6vw;
+    top:255.5vw;
+    left: 16vw;
+    z-index: 1;
+}
+#go_to_family{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:70vw;
+    height: 6vw;
+    top:262.5vw;
+    left: 16vw;
+    z-index: 1;
+}
+#go_to_cold{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:42vw;
+    height: 8vw;
+    top:271.5vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_hot{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:54vw;
+    height: 8vw;
+    top:282vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_finger_food{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:35.5vw;
+    height: 8vw;
+    top:292.5vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_sides{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:43vw;
+    height: 8vw;
+    top:303vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_payment{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 1px 1px 1px 1px rgba(0, 0, 0, 0.3);
+    border-radius: 2vw;
+    width:55.5vw;
+    height: 8vw;
+    top:313.5vw;
+    left: 8vw;
+    z-index: 1;
+}
+#go_to_zones_link{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    border-radius: 2vw;
+    width:18vw;
+    height: 18vw;
+    top:468vw;
+    left: 4vw;
+    z-index: 1;
+}
+#em_map{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    border-style: none;
+    border-radius: 3vw;
+    width:68vw;
+    height: 75vw;
+    top:440vw;
+    left: 25vw;
+    z-index: 1;
+}
+#go_to_whatsapp{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0.3);
+    border-radius: 3vw;
+    width:38vw;
+    height: 38vw;
+    top:570vw;
+    left: 55vw;
+    z-index: 1;
+}
+
+/*-----------------------------------------------------LINKS-----------------------------------------------------*/
+
+#facebook_link{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0);
+    width:62.5vw;
+    height: 12vw;
+    top:81.5vw;
+    left: 17vw;
+    z-index: 1;
+}
+#instagram_link{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0);
+    width:62.5vw;
+    height: 12vw;
+    top:99.5vw;
+    left: 17vw;
+    z-index: 1;
+}
+#whatsapp_link{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0,0);
+    width:62.5vw;
+    height: 12vw;
+    top:116vw;
+    left: 17vw;
+    z-index: 1;
+}
+#menu_link{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0);
+    width:62.5vw;
+    height: 12vw;
+    top:133.5vw;
+    left: 17vw;
+    z-index: 1;
+}
+#map_link{
+    position: absolute;
+    background-color: rgba(255, 255, 255, 0);
+    box-shadow: 2px 2px 2px 2px rgba(0, 0, 0, 0);
+    width:62.5vw;
+    height: 12vw;
+    top:152vw;
+    left: 17vw;
+    z-index: 1;
+}
+
+.advertising_1_op{
+    position: fixed;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
+    width:62.5vw;
+    border-radius: 3vw;
+    height: 92.5vw;
+    top:30vw;
+    left: 17vw;
+    z-index: 4;
+    border-style: solid;
+    border-width: 1.5vw;
+    border-color: rgb(168, 168, 168);
+    animation-name: adv_1_anim;
+    animation-duration: 3.5s;
+}
+.advertising_1_cl{
+    position: fixed;
+    box-shadow: 3px 3px 3px 3px rgba(0, 0, 0, 0.3);
+    width:62.5vw;
+    border-radius: 3vw;
+    height: 92.5vw;
+    top:30vw;
+    left: -200vw;
+    z-index: 4;
+    border-style: solid;
+    border-width: 1.5vw;
+    border-color: rgb(168, 168, 168);
+    animation-name: adv_1_anim_cl;
+    animation-duration: 1.5s;
+}
+.background_adv_1_op{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.8);
+    top:0vw;
+    left:0vw;
+    height: 0vw;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    animation-name: adv_bg_1_anim;
+    animation-duration: 2.5s;
+}
+.background_adv_1_cl{
+    position: fixed;
+    background-color: rgba(0, 0, 0, 0.0);
+    top:0vw;
+    left:-200vw;
+    height: 0vw;
+    width: 100vw;
+    height: 100vh;
+    z-index: 3;
+    animation-name: adv_bg_1_anim_cl;
+    animation-duration: 1.5s;
+}
+@keyframes adv_1_anim{
+    0%{left:200vw;}
+    57%{left:200vw;}
+    71%{left:200vw;}
+    89%{left:14vw;}
+    94%{left:19vw;}
+    96%{left:15vw;}
+    98%{left:18vw;}
+    100%{left:17vw;}
+}
+@keyframes adv_bg_1_anim{
+    0%{opacity: 0;}
+    80%{opacity: 0;}
+    100%{opacity: 0.8;}
+}
+@keyframes adv_1_anim_cl{
+    0%{left:17vw;}
+    5%{left:19vw;}
+    33%{left:-200vw;}
+    100%{left:-200vw;}
+}
+@keyframes adv_bg_1_anim_cl{
+    0%{left: 0vw; opacity: 0.8;}
+    66%{left: 0vw; opacity: 0.8;}
+    100%{left: 0vw; opacity: 0;}
+}
+.adv_1_header{
+    text-align: center;
+    font-size: 9vw;
+    padding-top: 3vw;
+    color:rgb(255, 255, 255);
+    position: absolute;
+    background-color: rgb(17, 16, 16);
+    left: 0vw;
+    top:0vw;
+    height: 20vw;
+    width: 62.5vw;
+    border-top-left-radius: 3vw;
+    border-top-right-radius: 3vw;
+    user-select: none;
+}
+.adv_1_content{
+    position: absolute;
+    left: 0vw;
+    top:20vw;
+    width: 62.5vw;
+    height: 62.5vw;
+    background-image: url(/carta_makit/advertising_1.png);
+    background-size: 100%;
+    background-repeat: no-repeat;
+    user-select: none;
+}
+.adv_1_footer{
+    text-align: center;
+    font-size: 5vw;
+    padding-top:0.5vw;
+    color:rgb(182, 0, 0);
+    position: absolute;
+    background-color: rgb(17, 16, 16);
+    left: 0vw;
+    top:82.5vw;
+    height: 10vw;
+    width: 62.5vw;
+    border-bottom-left-radius: 3vw;
+    border-bottom-right-radius: 3vw;
+    user-select: none;
+}
