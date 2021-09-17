@@ -39,19 +39,21 @@ const Overallview = () => {
   const handleBackConfirmationBtn = () => {
     setConfirmation(false);
   };
+  const capitalizeFirstLetter = (string) => string.charAt(0).toUpperCase() + string.slice(1);
   return (
     <div>
+      <h1 className="cart_header_title">Mi orden</h1>
       {data.ordercontent.map((eh) => (
-        <div key={`${eh.header}${miniIdGenerator()}`}>
+        <div className="overall_order_container" key={`${eh.header}${miniIdGenerator()}`}>
           <div>
-            <h1>{eh.header}</h1>
+            <h1 className="cart_prod_btn_title">{capitalizeFirstLetter(eh.header)}</h1>
             {eh.content.map((ec) => (
               <div key={ec.header}>
-                <h2>{ec.header}</h2>
+                <h2 className="cart_prod_btn_item">{capitalizeFirstLetter(ec.header)}</h2>
                 {ec.content.map((ecc) => (
                   ecc.quantity > 0
                     ? (
-                      <h3 key={ecc.name}>
+                      <h3 className="cart_prod_btn_sub_item" key={ecc.name}>
                         {ecc.name}
                         {' x '}
                         {ecc.quantity}
@@ -60,32 +62,38 @@ const Overallview = () => {
                 ))}
               </div>
             ))}
-            <footer>{eh.price}</footer>
+            <footer className="cart_prod_btn_price">{eh.price}</footer>
           </div>
         </div>
       ))}
-      <h1>Entrega:</h1>
-      <p>{data.orderdeliverystate ? `Envío a ${data.orderaddress}, ${data.orderinneradress}, ${data.orderaddressref}` : 'Recojo en el local'}</p>
-      <h1>Monto de compra</h1>
-      <h2>{`S/ ${parseFloat(data.orderproductsamount).toFixed(2)}`}</h2>
-      <h1>Delivery</h1>
-      <h2>{`S/ ${parseFloat(data.orderdeliveryamount).toFixed(2)}`}</h2>
-      <h1>Total</h1>
-      <h2>{`S/ ${parseFloat(data.orderamounttotal).toFixed(2)}`}</h2>
-      <button type="button" onClick={() => { sendOrderFinalStep(); }}>Enviar pedido</button>
+      <div className="overall_detail_container">
+        <h1 className="overall_detail_header">Entrega:</h1>
+        <p className="overall_detail_description">{data.orderdeliverystate ? `Envío a ${data.orderaddress}, ${data.orderinneradress}, ${data.orderaddressref}` : 'Recojo en el local'}</p>
+        <h1 className="overall_detail_header">Monto de compra:</h1>
+        <h2 className="overall_detail_description">{`S/ ${parseFloat(data.orderproductsamount).toFixed(2)}`}</h2>
+        <h1 className="overall_detail_header">Delivery:</h1>
+        <h2 className="overall_detail_description">{`S/ ${parseFloat(data.orderdeliveryamount).toFixed(2)}`}</h2>
+        <h1 className="overall_detail_header">Total:</h1>
+        <h2 className="overall_detail_description">{`S/ ${parseFloat(data.orderamounttotal).toFixed(2)}`}</h2>
+        <h1 className="overall_detail_header">Medio de pago:</h1>
+        <h2 className="overall_detail_description">{data.paymentmethod}</h2>
+      </div>
+      <button className="sendorderbtn" type="button" onClick={() => { sendOrderFinalStep(); }}>Enviar pedido</button>
       <button className="back-btn" type="button" onClick={() => { handleBackBtn(); }}>Volver</button>
-      <button type="button" onClick={() => { handleBackToCartBtn(); }}>Volver al carro</button>
+      <button className="back_to_Cart_btn" type="button" onClick={() => { handleBackToCartBtn(); }}>Volver al carro</button>
       {confirmation
         ? (
-          <div>
-            <h1>
-              Estas listo para enviar tu pedido?
-            </h1>
-            <h2>
-              Todos los items en el carro desaparecerán al enviar tu pedido
-            </h2>
-            <button type="button" onClick={() => { handleContinueConfirmationBtn(); }}>Aceptar</button>
-            <button className="back-btn" type="button" onClick={() => { handleBackConfirmationBtn(); }}>Volver</button>
+          <div className="alert_bg">
+            <div className="alert_inner_bg">
+              <h1 className="alert_header">
+                Estas listo para enviar tu pedido?
+              </h1>
+              <h2 className="alert_sub_header">
+                Todos los items en el carro desaparecerán al enviar tu pedido
+              </h2>
+              <button className="yes_no_btn" type="button" onClick={() => { handleContinueConfirmationBtn(); }}>Aceptar</button>
+              <button className="yes_no_btn" type="button" onClick={() => { handleBackConfirmationBtn(); }}>Volver</button>
+            </div>
           </div>
         )
         : ''}

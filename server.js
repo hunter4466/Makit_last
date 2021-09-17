@@ -32,9 +32,16 @@ const pool = mysql.createPool({
 });
 /* ---------------------------MAILER----------------------------------------*
 /*---------------------------ROUTES-------------------------*/
-app.all('/', (req, res) => {
-  res.sendFile('index.html');
+app.all('/shop', (req, res) => {
+  res.redirect('https://www.makitperu.com/');
 });
+app.all('/home', (req, res) => {
+  res.redirect('https://www.makitperu.com/');
+});
+app.all('/store', (req, res) => {
+  res.redirect('https://www.makitperu.com/');
+});
+
 /* ---------------------------API-------------------------*/
 app.all('/getcategories', (req, res) => {
   pool.getConnection((err, conn) => {
