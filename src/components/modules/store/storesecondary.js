@@ -33,6 +33,7 @@ const Storesecondary = () => {
       return 'undefined';
     }
   };
+
   return (
     <div>
       {switchState.loading2State ? <div className="loading_screen"><h1>Cargando...</h1></div> : (
