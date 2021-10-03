@@ -34,13 +34,14 @@
 
 .cart_prod_btn_title {
   @include customFont(Lato3, 9vw);
+
   margin-bottom: 1vw;
   margin-top: 3vw;
   border-style: solid;
   border-width: 0.5;
-  border-color:rgba(0, 0, 0, 0.1);
+  border-color: rgba(0, 0, 0, 0.1);
   border-bottom-color: transparent;
-  border-radius: 4vw 4vw 0vw 0vw;
+  border-radius: 4vw 4vw 0 0;
   padding-left: 3vw;
   padding-top: 2vw;
   height: 12vw;
@@ -48,6 +49,7 @@
 
 .cart_prod_btn_item {
   @include customFont(Lato3, 7vw);
+
   margin-left: 2vw;
   margin-bottom: 1vw;
   margin-top: 4vw;
@@ -55,9 +57,10 @@
 
 .cart_prod_btn_sub_item {
   @include customFont(Lato3, 5vw);
+
   margin-left: 4vw;
   margin-bottom: 1vw;
-  margin-top: 0vw;
+  margin-top: 0;
 }
 
 .cart_prod_btn_footer {
@@ -69,7 +72,9 @@
 
 .cart_prod_btn_modify {
   text-align: center;
+
   @include customFont(Lato3, 6vw);
+
   color: white;
   width: 25vw;
   height: 8vw;
@@ -118,9 +123,12 @@
 
   box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
 }
+
 .clear_prod_btn {
   background-color: rgb(225, 60, 60);
+
   @include customFont(Lato3, 6vw);
+
   color: white;
   width: 25vw;
   height: 11.5vw;
@@ -128,57 +136,65 @@
   margin-top: -3.1vw;
   border-style: solid;
   border-width: 1px;
-  border-radius: 0vw 0vw 2vw 2vw;
+  border-radius: 0 0 2vw 2vw;
   border-color: transparent;
 }
+
 .go_to_send_btn {
   position: fixed;
   top: 20vh;
   right: -16vw;
   border-style: solid;
   border-width: 1px;
-  border-radius: 2vw 2vw 0vw 0vw;
+  border-radius: 2vw 2vw 0 0;
   border-color: transparent;
   background-color: rgb(225, 60, 60);
+
   @include customFont(Lato3, 6vw);
+
   color: white;
   transform: rotate(270deg);
 }
+
 .keep_buying_btn {
   position: fixed;
   top: 50vh;
   right: -21.7vw;
   border-style: solid;
   border-width: 1px;
-  border-radius: 2vw 2vw 0vw 0vw;
+  border-radius: 2vw 2vw 0 0;
   border-color: transparent;
   background-color: rgb(126, 223, 126);
+
   @include customFont(Lato3, 6vw);
+
   color: white;
   transform: rotate(270deg);
 }
 // ----------------- nothing to show styles ----------
 .nothing_in_cart_container {
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw 2vw 0vw 0vw;
-    border-color: transparent;
-    margin-left: 10vw;
-    width: 60vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw 2vw 0 0;
+  border-color: transparent;
+  margin-left: 10vw;
+  width: 60vw;
 }
+
 .nothing_in_cart_container a {
   text-decoration: none;
 }
-.nothing_in_cart_title {
-    text-align: center;
-    @include customFont(Lato3, 6vw);
-    color: black;
-    margin-left: -3vw;
-    width: 80vw;
-}
-.nothing_in_cart_image {
 
+.nothing_in_cart_title {
+  text-align: center;
+
+  @include customFont(Lato3, 6vw);
+
+  color: black;
+  margin-left: -3vw;
+  width: 80vw;
 }
+
 // ----------------picker generals --------------------
 .question_frame {
   margin-left: 5vw;
@@ -266,87 +282,103 @@
 }
 // --------------- Overall --------------------------
 .overall_header {
-    @include customFont(Lato6, 10vw);
-    margin-left: 6vw;
-    margin-bottom: 0vw;
+  @include customFont(Lato6, 10vw);
+
+  margin-left: 6vw;
+  margin-bottom: 0;
 }
+
 .overall_order_container {
-    text-align: left;
-    margin-left: 5vw;
-    margin-top: 5vw;
-    margin-bottom: 10vw;
-    height: fit-content;
-    width: 83vw;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw;
-    border-color: rgb(225, 225, 225);
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
-    padding: 3vw;
+  text-align: left;
+  margin-left: 5vw;
+  margin-top: 5vw;
+  margin-bottom: 10vw;
+  height: fit-content;
+  width: 83vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw;
+  border-color: rgb(225, 225, 225);
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+  padding: 3vw;
 }
+
 .overall_detail_container {
-    background-color: rgba(0,0,0,0.1);
-    width: 80vw;
-    margin-left: 10vw;
-    padding-top: 5vw;
-    padding-bottom: 5vw;
-    border-radius: 3vw;
-    margin-bottom: 10vw;
+  background-color: rgba(0, 0, 0, 0.1);
+  width: 80vw;
+  margin-left: 10vw;
+  padding-top: 5vw;
+  padding-bottom: 5vw;
+  border-radius: 3vw;
+  margin-bottom: 10vw;
 }
 
 .overall_detail_header {
-    @include customFont(Lato6, 7vw);
-    margin-left: 5vw;
+  @include customFont(Lato6, 7vw);
+
+  margin-left: 5vw;
 }
+
 .overall_detail_description {
-    @include customFont(Lato6, 5vw);
-    margin-left: 7vw;
-    max-width: 70vw;
+  @include customFont(Lato6, 5vw);
+
+  margin-left: 7vw;
+  max-width: 70vw;
 }
+
 .sendorderbtn {
   position: fixed;
   top: 50vh;
   right: -15.8vw;
   border-style: solid;
   border-width: 1px;
-  border-radius: 2vw 2vw 0vw 0vw;
+  border-radius: 2vw 2vw 0 0;
   border-color: transparent;
   background-color: rgb(126, 223, 126);
+
   @include customFont(Lato3, 6vw);
+
   color: white;
   transform: rotate(270deg);
 }
+
 .back_to_Cart_btn {
-    position: fixed;
-    top: 20vh;
-    right: -17vw;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw 2vw 0vw 0vw;
-    border-color: transparent;
-    background-color: rgb(225, 60, 60);
-    @include customFont(Lato3, 6vw);
-    color: white;
-    transform: rotate(270deg);
+  position: fixed;
+  top: 20vh;
+  right: -17vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw 2vw 0 0;
+  border-color: transparent;
+  background-color: rgb(225, 60, 60);
+
+  @include customFont(Lato3, 6vw);
+
+  color: white;
+  transform: rotate(270deg);
 }
+
 .alert_inner_bg {
-    background-color: white;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw 2vw 2vw 2vw;
-    border-color: transparent;
-    background-color: rgb(255, 255, 255);
-    width: 80vw;
-    margin-left: 10vw;
-    margin-top: 20vw;
+  background-color: white;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw 2vw 2vw 2vw;
+  border-color: transparent;
+  width: 80vw;
+  margin-left: 10vw;
+  margin-top: 20vw;
 }
+
 .alert_header {
-    @include customFont(Lato3, 6vw);
-    text-align: center;
+  @include customFont(Lato3, 6vw);
+
+  text-align: center;
 }
+
 .alert_sub_header {
-    @include customFont(Lato3, 4vw);
-    text-align: center;
-    width: 70vw;
-    margin-left: 5vw;
+  @include customFont(Lato3, 4vw);
+
+  text-align: center;
+  width: 70vw;
+  margin-left: 5vw;
 }

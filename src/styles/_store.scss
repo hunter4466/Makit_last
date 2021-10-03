@@ -124,10 +124,6 @@
   width: fit-content;
 }
 // ----------------- store picker ------------------
-.store_picker_main_container {
-
-}
-
 .store_picker_container {
   @include flexbox(column);
 
@@ -290,18 +286,19 @@
 .counter-true {
   background-color: rgb(126, 223, 126);
 }
+
 .accept_btn_store_unactive {
   position: fixed;
   bottom: 5vh;
   left: -100vw;
-  margin-left: 0vw;
+  margin-left: 0;
   margin-top: 5vw;
   margin-bottom: 10vw;
   width: 60vw;
   height: 18vw;
   border-style: solid;
   border-width: 1px;
-  border-radius: 0vw 3vw 3vw 0vw;
+  border-radius: 0 3vw 3vw 0;
   border-color: rgb(126, 223, 126);
   background-color: rgb(126, 223, 126);
   color: white;
@@ -310,18 +307,19 @@
 
   box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.5);
 }
+
 .accept_btn_store_active {
   position: fixed;
   bottom: 5vh;
   left: -5vw;
-  margin-left: 0vw;
+  margin-left: 0;
   margin-top: 5vw;
   margin-bottom: 10vw;
   width: 60vw;
   height: 18vw;
   border-style: solid;
   border-width: 1px;
-  border-radius: 0vw 3vw 3vw 0vw;
+  border-radius: 0 3vw 3vw 0;
   border-color: rgb(126, 223, 126);
   background-color: rgb(126, 223, 126);
   color: white;
@@ -331,18 +329,21 @@
   box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.5);
   animation: translatebtn 0.5s;
 }
+
 @keyframes translatebtn {
-    0%{
-        transform:translateX(-100vw)
-    }
-    50%{
-        transform:translateX(5vw)
-    }
-    75%{
-        transform:translateX(-5vw)
-    }
-    100%{
-        transform:translateX(0vw)
-    }
-    
+  0% {
+    transform: translateX(-100vw);
+  }
+
+  50% {
+    transform: translateX(5vw);
+  }
+
+  75% {
+    transform: translateX(-5vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }
