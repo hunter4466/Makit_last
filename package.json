@@ -34,6 +34,7 @@
     "redux-logger": "^3.0.6",
     "web-vitals": "^1.0.1"
   },
+  "proxy": "http://localhost:8080",
   "scripts": {
     "start": "concurrently \"npm run start_server\"\"npm run start_app\"",
     "start_server": "node server.js",

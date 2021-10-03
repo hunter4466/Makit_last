@@ -31,6 +31,7 @@ const pool = mysql.createPool({
   database: 'makit_software',
   multipleStatements: 'true',
 });
+
 /* ---------------------------MAILER----------------------------------------*
 /*---------------------------ROUTES-------------------------*/
 app.get('/shop', (req, res) => {
@@ -97,6 +98,8 @@ app.all('/getItemWithId/:id', (req, res) => {
     });
   });
 });
+
+/* ----------- ----------------- */
 
 /* ------------------ANEXOS---------------------*/
 app.all('/carta', (req, res) => {
