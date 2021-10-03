@@ -1,44 +1,63 @@
 @import './modules/box';
 @import './fonts';
 
+html {
+  scroll-behavior: smooth;
+}
+
 body {
   user-select: none;
   margin: 0;
 }
+
 .page_holder {
   width: 100vw;
+
   @include flexbox(column);
 }
+
 .navigator_bar {
   width: 100vw;
   height: 15vw;
+
   @include flexbox(row);
+
   background-color: rgb(255, 255, 255);
 }
+
 .nav_item {
   width: 33vw;
   height: 25vw;
   text-align: center;
 }
+
 .nav_item img {
   margin-top: 5vw;
   width: 20%;
 }
+
 .selected_nav_item {
   width: 33vw;
   height: 25vw;
   text-align: center;
 }
+
 .selected_nav_item img {
   margin-top: 1vw;
   width: 40%;
   animation: navimgincrease 0.2s;
 }
+
 @keyframes navimgincrease {
-  0%{margin-top: 5vw;
-    width: 20%;}
-  100%{margin-top: 1vw;
-    width: 40%;}
+  0% {
+    margin-top: 5vw;
+    width: 20%;
+  }
+
+  100% {
+    margin-top: 1vw;
+    width: 40%;
+  }
 }
 // ----- Loading screen ------
 
@@ -46,15 +65,17 @@ body {
   text-align: center;
   width: 100vw;
   height: 150vw;
-  padding-top:50vw;
+  padding-top: 50vw;
+
   @include customFont(Lato1, 5vw);
+
   animation: loadinganim 1s infinite;
 }
 
 @keyframes loadinganim {
-  0% { transform: scale(1);}
-  40% { transform: scale(1.2);}
-  50% { transform: scale(1);}
-  60% { transform: scale(1.2);}
-  100% { transform: scale(1);}
+  0% { transform: scale(1); }
+  40% { transform: scale(1.2); }
+  50% { transform: scale(1); }
+  60% { transform: scale(1.2); }
+  100% { transform: scale(1); }
 }

@@ -156,7 +156,7 @@ const Itempicker = () => {
       )}
       {uncompleteAlert ? (<div>Background</div>) : ''}
       {uncompleteAlert ? (<div className="alert_bg" onClick={() => { setUncAlert(false); }}><button type="button" className="alert_btn">Aun tienes items por escoger! Toca aquí para volver</button></div>) : ''}
-      <button className="accept_btn_store" type="button" onClick={() => { handleAddClick(itemData.content.name.split(' ').join('_')); }}>Aceptar</button>
+      <button className={completedFields ? 'accept_btn_store_active' : 'accept_btn_store_unactive'} type="button" onClick={() => { handleAddClick(itemData.content.name.split(' ').join('_')); }}>Aceptar</button>
       <button className="back-btn" type="button" onClick={() => handleBackBtn()}>Volver</button>
     </div>
   );

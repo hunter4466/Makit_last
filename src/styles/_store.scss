@@ -3,252 +3,347 @@
 @import './fonts';
 
 .store_main_container {
-    position: absolute;
-    width: 100vw;
-    height: 150vw;
-    padding-top: 5vw;
-    background-color: rgb(250, 250, 250);
+  position: absolute;
+  width: 100vw;
+  height: 150vw;
+  padding-top: 5vw;
+  background-color: rgb(250, 250, 250);
+  padding-bottom: 5vw;
 }
+
 .back-btn {
-    @include back_btn(30vw, 10vw);
+  @include back_btn(30vw, 10vw);
 }
+
 .add-btn-active {
-    text-align: center;
-    @include addBtn(50vw, 10vw, 20vw, 10vw);
-    @include customFont(Lato1, 3.5vw);
-    background-color: rgba(0,0,0,0);
-    text-decoration: none;
-    color: black;
+  text-align: center;
+
+  @include addBtn(50vw, 10vw, 20vw, 10vw);
+  @include customFont(Lato1, 3.5vw);
+
+  background-color: rgba(0, 0, 0, 0);
+  text-decoration: none;
+  color: black;
 }
+
 .add-btn-active p {
-    margin-top: 2.5vw;
+  margin-top: 2.5vw;
 }
+
 .add-btn-unactive {
-    @include addBtn(50vw, 10vw, 20vw, 10vw);
-    @include customFont(Lato1, 3.5vw);
-    background-color: rgba(0,0,0,0.1)
+  @include addBtn(50vw, 10vw, 20vw, 10vw);
+  @include customFont(Lato1, 3.5vw);
+
+  background-color: rgba(0, 0, 0, 0.1);
 }
 // --------------- categorie btns ----------------
 .main_menu_btn {
-    float: left;
-    @include customFont(Lato1, 5vw);
-    @include menu_btn(90vw, 20vw, 5vw, 2vw);
-    overflow: hidden;
+  float: left;
+
+  @include customFont(Lato1, 5vw);
+  @include menu_btn(90vw, 20vw, 5vw, 2vw);
+
+  overflow: hidden;
 }
+
 .button_bg {
-    position: relative;
-    width: 100%;
-    height: 30vw;
-    margin-top: -30vw;
-    background: no-repeat right url(../images/icons/serifmakit.svg);
-    opacity: 0.15;
-    filter: invert(8%) sepia(96%) saturate(5586%) hue-rotate(13deg) brightness(100%) contrast(103%);
+  position: relative;
+  width: 100%;
+  height: 30vw;
+  margin-top: -30vw;
+  background: no-repeat right url(../images/icons/serifmakit.svg);
+  opacity: 0.15;
+  filter: invert(8%) sepia(96%) saturate(5586%) hue-rotate(13deg) brightness(100%) contrast(103%);
 }
 // ----------------- product buttons ------------------
-.store_main_container{
-    padding-bottom: 5vw;
-    height: fit-content;
-}
+
 .secondary_menu_btn {
-    @include flexbox(row);
-    float: left;
-    @include customFont(Lato1, 5vw);
-    @include menu_btn(90vw, 40vw, 5vw, 2vw);
-    overflow: hidden;
-    padding: 0vw;
+  @include flexbox(row);
+
+  float: left;
+
+  @include customFont(Lato1, 5vw);
+  @include menu_btn(90vw, 40vw, 5vw, 2vw);
+
+  overflow: hidden;
+  padding: 0;
 }
+
 .sec_men_preview_img_cont {
-    width: 45vw;
-    height: 40vw;
-    overflow: hidden;
+  width: 45vw;
+  height: 40vw;
+  overflow: hidden;
 }
+
 .sec_men_preview_img {
-    width: 100%;
+  width: 100%;
 }
+
 .secondary_btn_info_container {
-    @include flexbox(column);
-    height: 40vw;
-    margin-left: 2vw;
-    margin-right: 2vw;
-    margin-top: 3vw;
+  @include flexbox(column);
+
+  height: 40vw;
+  margin-left: 2vw;
+  margin-right: 2vw;
+  margin-top: 3vw;
 }
+
 .secondary_btn_info_name {
-    text-align: center;
-    width: 40vw;
-    height: 10vw;
-    padding-left: 3vw;
-    @include customFont(Lato1, 4vw);
+  text-align: center;
+  width: 40vw;
+  height: 10vw;
+  padding-left: 3vw;
+
+  @include customFont(Lato1, 4vw);
 }
+
 .secondary_btn_info_description {
-    text-align: center;
-    width: 40vw;
-    height: 10vw;
-    @include customFont(Lato8, 3vw);
-    padding-right: 3vw;
-    padding-left: 1vw;
+  text-align: center;
+  width: 40vw;
+  height: 10vw;
+
+  @include customFont(Lato8, 3vw);
+
+  padding-right: 3vw;
+  padding-left: 1vw;
 }
+
 .secondary_btn_info_price {
-    text-align: center;
-    width: 30vw;
-    height: 10vw;
-    margin-top: 2vw;
-    @include customFont(Lato6, 5vw);
-    padding-right: 1vw;
-    padding-left: 10vw;
+  text-align: center;
+  width: 30vw;
+  height: 10vw;
+  margin-top: 2vw;
+
+  @include customFont(Lato6, 5vw);
+
+  padding-right: 1vw;
+  padding-left: 10vw;
 }
+
 .product_data {
-    width: fit-content;
+  width: fit-content;
 }
 // ----------------- store picker ------------------
-.store_picker_main_container {
-
-}
 .store_picker_container {
-    @include flexbox(column);
-    width: 90vw;
-    margin-left: 5vw;
-    margin-top: 5vw;
-    height: fit-content;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 3vw;
-    border-color: rgb(225, 225, 225);
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+  @include flexbox(column);
+
+  width: 90vw;
+  margin-left: 5vw;
+  margin-top: 5vw;
+  height: fit-content;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 3vw;
+  border-color: rgb(225, 225, 225);
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
 }
-.store_picker_title{
-    @include customFont(Lato1, 6vw);
-    width: 70vw;
-    margin-left: 10vw;
-    margin-top: 5vw;
-    margin-bottom: 5vw;
+
+.store_picker_title {
+  @include customFont(Lato1, 6vw);
+
+  width: 70vw;
+  margin-left: 10vw;
+  margin-top: 5vw;
+  margin-bottom: 5vw;
 }
+
 .completed_btn {
-    @include storePickerBtn(70vw, 15vw, 10vw, 2vw);
-    @include customFont(Lato3, 5vw);
-    background: url('../images/icons/check.svg') no-repeat;
-    background-size: 10vw;
-    background-position-x: 95%;
-    background-position-y: 50%;
+  @include storePickerBtn(70vw, 15vw, 10vw, 2vw);
+  @include customFont(Lato3, 5vw);
+
+  background: url('../images/icons/check.svg') no-repeat;
+  background-size: 10vw;
+  background-position-x: 95%;
+  background-position-y: 50%;
 }
+
 .uncompleted_btn {
-    @include storePickerBtn(70vw, 15vw, 10vw, 2vw);
-    @include customFont(Lato3, 5vw);
+  @include storePickerBtn(70vw, 15vw, 10vw, 2vw);
+  @include customFont(Lato3, 5vw);
 }
+
 .alert_bg {
-    position: fixed;
-    @include alertBg();
+  position: fixed;
+
+  @include alertBg();
 }
+
 .alert_btn {
-    @include alertBtn();
+  @include alertBtn();
 }
 // ----------------- Item picker ------------------
 .item_picker_main_container {
-    width: 90vw;
-    margin-left: 2.5vw;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw;
-    background-color: white;
-    border-color: rgb(225, 225, 225);
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
-    padding: 2vw 2vw 2vw 2vw;
+  width: 90vw;
+  margin-left: 2.5vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw;
+  background-color: white;
+  border-color: rgb(225, 225, 225);
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+  padding: 2vw 2vw 2vw 2vw;
 }
+
 .item_picker_title {
-    @include customFont(Lato1, 8vw);
+  @include customFont(Lato1, 8vw);
 }
+
 .description_container {
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw;
-    background-color: white;
-    border-color: rgb(225, 225, 225);
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
-    margin-bottom: 3vw;
-    overflow: hidden;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw;
+  background-color: white;
+  border-color: rgb(225, 225, 225);
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+  margin-bottom: 3vw;
+  overflow: hidden;
 }
+
 .description_sub_container {
-    @include flexbox(row);
+  @include flexbox(row);
 }
+
 .description_img_container {
-    width: 46vw;
-    height: 40vw;
-    overflow: hidden;
+  width: 46vw;
+  height: 40vw;
+  overflow: hidden;
 }
+
 .description_img_container img {
-    height: 100%;
+  height: 100%;
 }
+
 .description_text_container {
-    width: 54vw;
-    padding-left: 2vw;
+  width: 54vw;
+  padding-left: 2vw;
 }
+
 .item_name {
-    @include customFont(Lato8, 3.8vw);
+  @include customFont(Lato8, 3.8vw);
 }
+
 .item_description {
-    @include customFont(Lato8, 3vw);
+  @include customFont(Lato8, 3vw);
 }
+
 .select_btns_container {
-    @include flexbox(row);
-    text-align: center;
-    width: 37vw;
-    height: 4vw;
-    margin-left: 2vw;
-    margin-bottom: 2vw;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 5vw;
-    background-color: white;
-    border-color: rgb(225, 225, 225);
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
-    padding: 2vw 2vw 2vw 2vw;
+  @include flexbox(row);
+
+  text-align: center;
+  width: 37vw;
+  height: 4vw;
+  margin-left: 2vw;
+  margin-bottom: 2vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 5vw;
+  background-color: white;
+  border-color: rgb(225, 225, 225);
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+  padding: 2vw 2vw 2vw 2vw;
 }
+
 .item_up_btn {
-    @include upBtn();
+  @include upBtn();
 }
+
 .item_input {
-    width: 5vw;
-    height: 4vw;
-    border-style: none;
-    background-color: transparent;
-    @include customFont(Lato8, 5vw);
+  width: 5vw;
+  height: 4vw;
+  border-style: none;
+  background-color: transparent;
+
+  @include customFont(Lato8, 5vw);
 }
+
 .item_down_btn {
-    @include downBtn();
+  @include downBtn();
 }
+
 .counter {
-    position: fixed;
-    top: 3vh;
-    opacity: 0.7;
-    right: 20vw;
-    @include customFont(Lato8, 4vw);
-    text-align: center;
-    padding-top: 2vw;
-    width: 60vw;
-    height: 7vw;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw;
-    border-color: transparent;
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+  position: fixed;
+  top: 3vh;
+  opacity: 0.7;
+  right: 20vw;
+
+  @include customFont(Lato8, 4vw);
+
+  text-align: center;
+  padding-top: 2vw;
+  width: 60vw;
+  height: 7vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 2vw;
+  border-color: transparent;
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
 }
+
 .counter-false {
-    background-color: rgb(223, 175, 45);
+  background-color: rgb(223, 175, 45);
 }
+
 .counter-true {
-    background-color:rgb(126, 223, 126);
+  background-color: rgb(126, 223, 126);
 }
-.accept_btn_store {
-    margin-left: 15vw;
-    margin-top: 5vw;
-    margin-bottom: 10vw;
-    width: 60vw;
-    height: 14vw;
-    border-style: solid;
-    border-width: 1px;
-    border-radius: 2vw;
-    border-color: rgb(225, 225, 225);
-    background-color: rgb(225, 60, 60);
-    color: white;
-    @include customFont(Lato1, 6vw);
-    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0,0,0,0.1);
+
+.accept_btn_store_unactive {
+  position: fixed;
+  bottom: 5vh;
+  left: -100vw;
+  margin-left: 0;
+  margin-top: 5vw;
+  margin-bottom: 10vw;
+  width: 60vw;
+  height: 18vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0 3vw 3vw 0;
+  border-color: rgb(126, 223, 126);
+  background-color: rgb(126, 223, 126);
+  color: white;
+
+  @include customFont(Lato1, 6vw);
+
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.5);
+}
+
+.accept_btn_store_active {
+  position: fixed;
+  bottom: 5vh;
+  left: -5vw;
+  margin-left: 0;
+  margin-top: 5vw;
+  margin-bottom: 10vw;
+  width: 60vw;
+  height: 18vw;
+  border-style: solid;
+  border-width: 1px;
+  border-radius: 0 3vw 3vw 0;
+  border-color: rgb(126, 223, 126);
+  background-color: rgb(126, 223, 126);
+  color: white;
+
+  @include customFont(Lato1, 6vw);
+
+  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.5);
+  animation: translatebtn 0.5s;
+}
+
+@keyframes translatebtn {
+  0% {
+    transform: translateX(-100vw);
+  }
+
+  50% {
+    transform: translateX(5vw);
+  }
+
+  75% {
+    transform: translateX(-5vw);
+  }
+
+  100% {
+    transform: translateX(0);
+  }
 }

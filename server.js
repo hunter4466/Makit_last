@@ -1,6 +1,7 @@
 const express = require('express');
 const session = require('express-session');
 const mysql = require('mysql');
+const path = require('path');
 
 const app = express();
 
@@ -12,7 +13,7 @@ app.use(session({
 }));
 app.use(express.json());
 app.use(express.urlencoded());
-app.use(express.static('build'));
+app.use(express.static(`${__dirname}/build`));
 /* ---------------------------CONEXIONES----------------------------------------*/
 // var pool = mysql.createPool({
 //     connectionLimit: 1000,
@@ -30,10 +31,17 @@ const pool = mysql.createPool({
   database: 'makit_software',
   multipleStatements: 'true',
 });
+
 /* ---------------------------MAILER----------------------------------------*
 /*---------------------------ROUTES-------------------------*/
-app.all('/', (req, res) => {
-  res.sendFile('index.html');
+app.get('/shop', (req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/store', (req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
+});
+app.get('/home', (req, res) => {
+  res.sendFile(path.resolve(`${__dirname}/build/index.html`));
 });
 /* ---------------------------API-------------------------*/
 app.all('/getcategories', (req, res) => {
@@ -90,6 +98,8 @@ app.all('/getItemWithId/:id', (req, res) => {
     });
   });
 });
+
+/* ----------- ----------------- */
 
 /* ------------------ANEXOS---------------------*/
 app.all('/carta', (req, res) => {
