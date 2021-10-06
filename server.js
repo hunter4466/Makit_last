@@ -79,6 +79,19 @@ app.all('/send_order_to_db', (req, res) => {
   });
 });
 
+app.all('/getlastweekorders', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const date = new Date();
+    const distance = date.getTime() - 604800000;
+    const query = `SELECT * FROM ordenes WHERE hora_orden > '${distance}}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines);
+      conn.release();
+    });
+  });
+});
+
 app.all('/getItemWithId/:id', (req, res) => {
   let result = [];
   const responseObj = [];
