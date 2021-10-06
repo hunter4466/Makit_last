@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const mysql = require('mysql');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
@@ -14,6 +15,7 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(`${__dirname}/build`));
+app.use(cors());
 /* ---------------------------CONEXIONES----------------------------------------*/
 // var pool = mysql.createPool({
 //     connectionLimit: 1000,
