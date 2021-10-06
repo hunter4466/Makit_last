@@ -15,7 +15,9 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(`${__dirname}/build`));
-app.use(cors());
+app.use(cors({
+  origin: '*',
+}));
 /* ---------------------------CONEXIONES----------------------------------------*/
 // var pool = mysql.createPool({
 //     connectionLimit: 1000,
