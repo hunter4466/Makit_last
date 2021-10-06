@@ -309,7 +309,6 @@
   background-color: rgba(0, 0, 0, 0.8);
   top: 0;
   left: 0;
-  height: 0;
   width: 100vw;
   height: 100vh;
   z-index: 3;
@@ -322,7 +321,6 @@
   background-color: rgba(0, 0, 0, 0);
   top: 0;
   left: -200vw;
-  height: 0;
   width: 100vw;
   height: 100vh;
   z-index: 3;
@@ -355,9 +353,20 @@
 }
 
 @keyframes adv_bg_1_anim_cl {
-  0% { left: 0; opacity: 0.8; }
-  66% { left: 0; opacity: 0.8; }
-  100% { left: 0; opacity: 0; }
+  0% {
+    left: 0;
+    opacity: 0.8;
+  }
+
+  66% {
+    left: 0;
+    opacity: 0.8;
+  }
+
+  100% {
+    left: 0;
+    opacity: 0;
+  }
 }
 
 .adv_1_header {
