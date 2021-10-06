@@ -83,7 +83,29 @@ app.all('/getlastweekorders', (req, res) => {
   pool.getConnection((err, conn) => {
     const date = new Date();
     const distance = date.getTime() - 604800000;
-    const query = `SELECT * FROM ordenes WHERE hora_orden > '${distance}}'`;
+    const query = `SELECT * FROM ordenes WHERE hora_orden > '${distance}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines);
+      conn.release();
+    });
+  });
+});
+
+app.all('/updateKitchenState', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const query = `UPDATE ordenes SET kitchen_state = '${req.body.state}' WHERE idordenes = '${req.body.id}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines);
+      conn.release();
+    });
+  });
+});
+
+app.all('/updateEnsambleState', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const query = `UPDATE ordenes SET ensamble_state = '${req.body.state}' WHERE idordenes = '${req.body.id}'`;
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
       res.send(lines);
