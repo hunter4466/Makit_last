@@ -66,6 +66,19 @@ app.all('/getProdWithId/:id', (req, res) => {
   });
 });
 
+app.all('/send_order_to_db', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
+    const date = new Date();
+    const query = `INSERT INTO ordenes (fecha_orden, hora_orden, order_detail) VALUES ('${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}','${date.getTime()}','${req.body.info}')`;
+    conn.query(query, (error) => {
+      if (error) throw error;
+      res.send({ resolve: 'The order has been send correctly' });
+      conn.release();
+    });
+  });
+});
+
 app.all('/getItemWithId/:id', (req, res) => {
   let result = [];
   const responseObj = [];
