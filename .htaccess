@@ -1,3 +1,4 @@
 RewriteEngine on
 RewriteRule (.*) http://localhost:8080/$1 [P,L]
 DirectoryIndex disabled
+Header set Access-Control-Allow-Origin "*" 
