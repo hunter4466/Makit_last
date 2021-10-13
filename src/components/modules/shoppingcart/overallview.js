@@ -30,6 +30,25 @@ const Overallview = () => {
     dispatch(switchoverallview(false));
   };
   const handleContinueConfirmationBtn = () => {
+    const myHeaders = new Headers();
+    myHeaders.append('Content-Type', 'application/x-www-form-urlencoded');
+    myHeaders.append('Cookie', 'sid=s%3ANMiPqcSo-1AHqC0CcWimMAGPIaJRfu0T.HHZXlPZLG25%2BGReNLNFVeb1WeUd31nlzhAaWK6w4Ucw');
+
+    const urlencoded = new URLSearchParams();
+    urlencoded.append('info', JSON.stringify(data));
+
+    const requestOptions = {
+      method: 'POST',
+      headers: myHeaders,
+      body: urlencoded,
+      redirect: 'follow',
+    };
+
+    fetch('/send_order_to_db', requestOptions)
+      .then((response) => response.text())
+      .then((result) => console.log(result))
+      .catch((error) => console.log('error', error));
+
     dispatch(switchShoppingCart(true));
     dispatch(switchoverallview(false));
     whatsorder(data);

@@ -2,6 +2,7 @@ const express = require('express');
 const session = require('express-session');
 const mysql = require('mysql');
 const path = require('path');
+const cors = require('cors');
 
 const app = express();
 
@@ -14,6 +15,9 @@ app.use(session({
 app.use(express.json());
 app.use(express.urlencoded());
 app.use(express.static(`${__dirname}/build`));
+app.use(cors({
+  origin: '*',
+}));
 /* ---------------------------CONEXIONES----------------------------------------*/
 // var pool = mysql.createPool({
 //     connectionLimit: 1000,
@@ -58,6 +62,54 @@ app.all('/getcategories', (req, res) => {
 app.all('/getProdWithId/:id', (req, res) => {
   pool.getConnection((err, conn) => {
     const query = `SELECT * FROM productos WHERE idcategoria = ${req.params.id}`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines);
+      conn.release();
+    });
+  });
+});
+
+app.all('/send_order_to_db', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
+    const date = new Date();
+    const query = `INSERT INTO ordenes (fecha_orden, hora_orden, order_detail) VALUES ('${date.getFullYear()}-${date.getMonth() + 1}-${date.getDate()}','${date.getTime()}','${req.body.info}')`;
+    conn.query(query, (error) => {
+      if (error) throw error;
+      res.send({ resolve: 'The order has been send correctly' });
+      conn.release();
+    });
+  });
+});
+
+app.all('/getlastweekorders', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const date = new Date();
+    const distance = date.getTime() - 604800000;
+    const query = `SELECT * FROM ordenes WHERE hora_orden > '${distance}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines);
+      conn.release();
+    });
+  });
+});
+
+app.all('/updateKitchenState', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const query = `UPDATE ordenes SET kitchen_state = '${req.body.state}' WHERE idordenes = '${req.body.id}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines);
+      conn.release();
+    });
+  });
+});
+
+app.all('/updateEnsambleState', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const query = `UPDATE ordenes SET ensamble_state = '${req.body.state}' WHERE idordenes = '${req.body.id}'`;
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
       res.send(lines);
