@@ -51,7 +51,7 @@ Run:
 
 Get a live preview of the project on this link
 
-- Link: [Live-Preview](https://hunter4466.github.io/js-capstone-proj-kanban-board/dist/index.html)
+- Link: [Live-Preview](https://www.makitperu.com/)
 
 
 ## Authors
