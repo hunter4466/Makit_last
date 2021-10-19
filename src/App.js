@@ -12,9 +12,6 @@ import ShoppingCart from './components/shoppingcart';
 import Store from './components/store';
 import { resetCartSwitch } from './redux/cart/cart';
 import { resetStore } from './redux/store/store';
-import home from './images/icons/home.svg';
-import store from './images/icons/store.svg';
-import shoppingcart from './images/icons/shopping_cart.svg';
 
 const App = () => {
   const dispatch = useDispatch();
@@ -26,9 +23,9 @@ const App = () => {
     <Router>
       <div className="page_holder">
         <div className="navigator_bar">
-          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/home"><img alt="home" src={home} /></NavLink>
-          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/store"><img alt="home" src={store} /></NavLink>
-          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/shop"><img alt="home" src={shoppingcart} /></NavLink>
+          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/home">HOME</NavLink>
+          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/store">TIENDA</NavLink>
+          <NavLink activeClassName="selected_nav_item" className="nav_item" onClick={() => { handleStoreCloseClick(); }} to="/shop">CARRITO</NavLink>
         </div>
         <Switch>
           <Route exact path="/">

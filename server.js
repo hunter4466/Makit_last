@@ -150,8 +150,133 @@ app.all('/getItemWithId/:id', (req, res) => {
     });
   });
 });
+/* --------------- id generator --------------*/
+const tokenGenerator = () => {
+  const guid = () => {
+    const s4 = () => Math.floor((1 + Math.random()) * 0x10000)
+      .toString(16)
+      .substring(1);
+    return `${s4() + s4()}${s4()}${s4()}${s4()}${s4()}${s4()}${s4()}`;
+  };
+  const newKey = guid();
+  return newKey;
+};
+/* ------------ body validate ---------------- */
+const checkbody = (body) => {
+  const acceptedkeys = ['name', 'lastname', 'birthdate', 'auth', 'foodpref'];
+  const keys = Object.keys(body);
+  let validation = true;
+  const errortypes = [];
+  const errorcoll = [];
+  keys.forEach((e) => {
+    if (!acceptedkeys.includes(e)) {
+      errortypes.push(e, ', ');
+      validation = false;
+    }
+  });
+  if (!validation) {
+    errorcoll.push(`${errortypes.reduce((a, b) => a + b)} is/are not valid entry/entries.`);
+  }
+  if (keys.includes('birthdate')) {
+    const dateval = /^\d{4}-(0[1-9]|1[0-2])-(0[1-9]|[12][0-9]|3[01])$/.test(body.birthdate);
+    if (!dateval) {
+      validation = false;
+      errorcoll.push(`${body.birthdate} is not a valid date, date must be in the following format YYYY-MM-DD`);
+    }
+  }
+  if (keys.includes('auth')) {
+    const authval = (body.auth === 'true' || body.auth === 'false');
+    if (!authval) {
+      validation = false;
+      errorcoll.push(`${body.auth} is not a valid auth value, auth must be true or false (boolean)`);
+    }
+  }
+  if (!validation) {
+    const returnobj = {};
+    let count = 1;
+    errorcoll.forEach((e) => {
+      returnobj[`Error ${count}`] = e;
+      count += 1;
+    });
+    return { check: false, errors: returnobj };
+  }
+  const body2 = body;
+  if (body2.auth === 'true') {
+    body2.auth = 1;
+  } else if (body2.auth === 'false') {
+    body2.auth = 0;
+  }
+  return { check: true, values: body2 };
+};
 
-/* ----------- ----------------- */
+/* ---------- OESCHLE API ------------------- */
+
+app.post('/user', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) { conn.release(); throw err; }
+    const token = tokenGenerator();
+    const query = `INSERT INTO oeschle_test_users (auth_token) VALUES ('${token}')`;
+    conn.query(query, (error) => {
+      if (error) {
+        res.send({ state: 'Error no token was created' });
+        conn.release();
+        throw error;
+      }
+      res.send({ state: 'Token successfully created', token });
+      conn.release();
+    });
+  });
+});
+
+app.post('/data/:id', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) { conn.release(); throw err; }
+    const query = `SELECT * FROM oeschle_test_users WHERE auth_token = '${req.params.id}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { conn.release(); throw error; }
+      if (lines.length > 0) {
+        const autho = checkbody(req.body);
+        if (autho.check) {
+          const newQuery = `INSERT INTO oeschle_test_data (user_id, name, lastname, birthdate, auth, foodpref) VALUES ('${lines[0].id}', '${autho.values.name}', '${autho.values.lastname}', '${autho.values.birthdate}', '${autho.values.auth}', '${autho.values.foodpref}')`;
+          conn.query(newQuery, (error2) => {
+            if (error2) { conn.release(); throw error2; }
+            res.send({ Success: 'Data has been stored correctly!' });
+            conn.release();
+          });
+        } else {
+          res.send(autho.errors);
+          conn.release();
+        }
+      } else {
+        conn.release();
+        res.send({ error: 'Provided token is not valid' });
+      }
+    });
+  });
+});
+
+app.get('/data/:id', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) { conn.release(); throw err; }
+    const query = `SELECT * FROM oeschle_test_users WHERE auth_token = '${req.params.id}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { conn.release(); throw error; }
+      if (lines.length > 0) {
+        const newQuery = `SELECT * FROM oeschle_test_data WHERE user_id = '${lines[0].id}'`;
+        conn.query(newQuery, (error2, lines2) => {
+          if (error2) { conn.release(); throw error2; }
+          res.send(lines2);
+          conn.release();
+        });
+      } else {
+        conn.release();
+        res.send({ error: 'Provided token is not valid' });
+      }
+    });
+  });
+});
+
+/* ---------------------------- */
 
 /* ------------------ANEXOS---------------------*/
 app.all('/carta', (req, res) => {

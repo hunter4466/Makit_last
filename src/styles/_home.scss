@@ -2,32 +2,42 @@
 @import './modules/box.scss';
 @import './fonts';
 
-.homepage_container {
-  width: 80vw;
-  height: 80vw;
-  margin: 10vw 10vw 10vw 10vw;
-  border-style: solid;
-  border-width: 1px;
-  border-radius: 2vw;
-  background-color: white;
-  border-color: rgb(225, 225, 225);
-  box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+$breakpoint-tablet: 768px;
+
+@media (max-width: $breakpoint-tablet) {
+  .homepage_container {
+    width: 80vw;
+    height: 80vw;
+    margin: 10vw 10vw 10vw 10vw;
+    border-style: solid;
+    border-width: 1px;
+    border-radius: 2vw;
+    background-color: white;
+    border-color: rgb(225, 225, 225);
+    box-shadow: 0.3vw 0.3vw 2vw 0.3vw rgba(0, 0, 0, 0.1);
+  }
+
+  .homepage_container a {
+    text-decoration: none;
+  }
+
+  .homepage_title {
+    @include customFont(Lato1, 7vw);
+
+    color: black;
+    text-align: center;
+  }
+
+  .homepage_img {
+    width: 50vw;
+    height: 50vw;
+    margin-left: 15vw;
+    filter: invert(14%) sepia(65%) saturate(3587%) hue-rotate(354deg) brightness(88%) contrast(91%);
+  }
 }
 
-.homepage_container a {
-  text-decoration: none;
-}
+$breakpoint-tablet: 769px;
 
-.homepage_title {
-  @include customFont(Lato1, 7vw);
+@media (min-width: $breakpoint-tablet) {
 
-  color: black;
-  text-align: center;
-}
-
-.homepage_img {
-  width: 50vw;
-  height: 50vw;
-  margin-left: 15vw;
-  filter: invert(14%) sepia(65%) saturate(3587%) hue-rotate(354deg) brightness(88%) contrast(91%);
 }
