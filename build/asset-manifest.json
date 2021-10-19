@@ -1,14 +1,14 @@
 {
   "files": {
-    "main.css": "/static/css/main.fd52c8d3.chunk.css",
-    "main.js": "/static/js/main.f5da219c.chunk.js",
-    "main.js.map": "/static/js/main.f5da219c.chunk.js.map",
+    "main.css": "/static/css/main.706c550f.chunk.css",
+    "main.js": "/static/js/main.12ecb1f0.chunk.js",
+    "main.js.map": "/static/js/main.12ecb1f0.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.eb10e162.js",
     "runtime-main.js.map": "/static/js/runtime-main.eb10e162.js.map",
     "static/js/2.5a7d63b0.chunk.js": "/static/js/2.5a7d63b0.chunk.js",
     "static/js/2.5a7d63b0.chunk.js.map": "/static/js/2.5a7d63b0.chunk.js.map",
     "index.html": "/index.html",
-    "static/css/main.fd52c8d3.chunk.css.map": "/static/css/main.fd52c8d3.chunk.css.map",
+    "static/css/main.706c550f.chunk.css.map": "/static/css/main.706c550f.chunk.css.map",
     "static/js/2.5a7d63b0.chunk.js.LICENSE.txt": "/static/js/2.5a7d63b0.chunk.js.LICENSE.txt",
     "static/media/_home.scss": "/static/media/Lato-ThinItalic.c47d267d.ttf",
     "static/media/alitas_box.png": "/static/media/alitas_box.15a13a9f.png",
@@ -29,7 +29,6 @@
     "static/media/gohan_rolls.png": "/static/media/gohan_rolls.4d26f6e4.png",
     "static/media/gyosas_x_4.png": "/static/media/gyosas_x_4.9d006d83.png",
     "static/media/gyosas_x_8.png": "/static/media/gyosas_x_8.2e9c36d2.png",
-    "static/media/home.0411d56b.svg": "/static/media/home.0411d56b.svg",
     "static/media/makis_acevichado.png": "/static/media/makis_acevichado.44d32b2b.png",
     "static/media/makis_aguacate_roll.png": "/static/media/makis_aguacate_roll.bfd87bfa.png",
     "static/media/makis_bbq.png": "/static/media/makis_bbq.9f7a006d.png",
@@ -54,16 +53,14 @@
     "static/media/mlogosticks.4940c428.svg": "/static/media/mlogosticks.4940c428.svg",
     "static/media/ohashis.png": "/static/media/ohashis.728e44c1.png",
     "static/media/salsa_adicional.png": "/static/media/salsa_adicional.3b1af209.png",
-    "static/media/shopping_cart.c1e827fb.svg": "/static/media/shopping_cart.c1e827fb.svg",
     "static/media/sticksdoll.67b1b934.svg": "/static/media/sticksdoll.67b1b934.svg",
-    "static/media/store.63843cda.svg": "/static/media/store.63843cda.svg",
     "static/media/tabla_sola.png": "/static/media/tabla_sola.b47f105f.png",
     "static/media/trio.png": "/static/media/trio.b23fd942.png"
   },
   "entrypoints": [
     "static/js/runtime-main.eb10e162.js",
     "static/js/2.5a7d63b0.chunk.js",
-    "static/css/main.fd52c8d3.chunk.css",
-    "static/js/main.f5da219c.chunk.js"
+    "static/css/main.706c550f.chunk.css",
+    "static/js/main.12ecb1f0.chunk.js"
   ]
 }
