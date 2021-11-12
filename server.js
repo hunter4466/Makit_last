@@ -59,6 +59,42 @@ app.all('/getcategories', (req, res) => {
   });
 });
 
+app.all('/switch_order_to_kitchen/:id', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
+    const query = `CALL move_to_kitchen(${req.params.id})`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send({ Message: 'Moved to kitchen' });
+      conn.release();
+    });
+  });
+});
+
+app.all('/switch_order_to_ensamble/:id', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
+    const query = `CALL move_to_ensamble(${req.params.id})`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send({ Message: 'Moved to ensamble' });
+      conn.release();
+    });
+  });
+});
+
+app.all('/switch_order_to_delivery/:id', (req, res) => {
+  pool.getConnection((err, conn) => {
+    if (err) throw err;
+    const query = `CALL move_to_delivered(${req.params.id})`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send({ Message: 'Moved to delivery' });
+      conn.release();
+    });
+  });
+});
+
 app.all('/getProdWithId/:id', (req, res) => {
   pool.getConnection((err, conn) => {
     const query = `SELECT * FROM productos WHERE idcategoria = ${req.params.id}`;
