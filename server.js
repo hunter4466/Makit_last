@@ -139,7 +139,7 @@ app.all('/getlastweeklength', (req, res) => {
     const query = `SELECT * FROM ordenes WHERE hora_orden > '${distance}'`;
     conn.query(query, (error, lines) => {
       if (error) { throw error; }
-      res.send({ length: lines.length });
+      res.send({ size: lines.length });
       conn.release();
     });
   });
