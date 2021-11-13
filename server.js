@@ -132,7 +132,7 @@ app.all('/getlastweekorders', (req, res) => {
   });
 });
 
-app.all('/getlastweekorderslength', (req, res) => {
+app.all('/getlastweeklength', (req, res) => {
   pool.getConnection((err, conn) => {
     const date = new Date();
     const distance = date.getTime() - 604800000;
