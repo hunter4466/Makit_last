@@ -132,6 +132,19 @@ app.all('/getlastweekorders', (req, res) => {
   });
 });
 
+app.all('/getlastweekorderslength', (req, res) => {
+  pool.getConnection((err, conn) => {
+    const date = new Date();
+    const distance = date.getTime() - 604800000;
+    const query = `SELECT * FROM ordenes WHERE hora_orden > '${distance}'`;
+    conn.query(query, (error, lines) => {
+      if (error) { throw error; }
+      res.send(lines.length);
+      conn.release();
+    });
+  });
+});
+
 app.all('/updateKitchenState', (req, res) => {
   pool.getConnection((err, conn) => {
     const query = `UPDATE ordenes SET kitchen_state = '${req.body.state}' WHERE idordenes = '${req.body.id}'`;
