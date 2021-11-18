@@ -147,7 +147,7 @@ app.all('/getlastweeklength', (req, res) => {
 
 app.all('/sendToKitchen/:id', (req, res) => {
   pool.getConnection((err, conn) => {
-    const query = `CALL move_to_kitchen(${req.params.id});`;
+    const query = `CALL move_to_kitchen('${req.params.id}');`;
     conn.query(query, (error) => {
       if (error) { throw error; }
       res.send({ message: 'Sent Correctly' });
@@ -158,7 +158,7 @@ app.all('/sendToKitchen/:id', (req, res) => {
 
 app.all('/sendToEnsamble/:id', (req, res) => {
   pool.getConnection((err, conn) => {
-    const query = `CALL move_to_ensamble(${req.params.id});`;
+    const query = `CALL move_to_ensamble('${req.params.id}');`;
     conn.query(query, (error) => {
       if (error) { throw error; }
       res.send({ message: 'Sent Correctly' });
@@ -169,7 +169,7 @@ app.all('/sendToEnsamble/:id', (req, res) => {
 
 app.all('/sendToDelivery/:id', (req, res) => {
   pool.getConnection((err, conn) => {
-    const query = `CALL move_to_delivered(${req.params.id});`;
+    const query = `CALL move_to_delivered('${req.params.id}');`;
     conn.query(query, (error) => {
       if (error) { throw error; }
       res.send({ message: 'Sent Correctly' });
